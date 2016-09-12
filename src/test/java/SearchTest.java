@@ -15,7 +15,7 @@ public class SearchTest {
 
     @Test public void first(){
         new SearchBlock().searchFor(query).
-                searchResultShouldHasPhrase(query);
+                searchResultShouldHasPhrase();
     }
 
 }

@@ -13,7 +13,7 @@ public class SearchBlock {
     public ProductListBlock searchFor(String q){
         fieldSearch.append(q);
         submitSearch.pressEnter();
-        return new ProductListBlock();
+        return new ProductListBlock(q);
     }
 
 }

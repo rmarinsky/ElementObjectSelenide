@@ -7,10 +7,18 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class ProductListBlock {
 
+    private String searchedPhrase;
+
+    public ProductListBlock(){}
+
+    public ProductListBlock(String searchedPhrase){
+        this.searchedPhrase = searchedPhrase;
+    }
+
     private SelenideElement searchTitle = $(".search-title-highlight");
 
-    public void searchResultShouldHasPhrase(String phrase){
-        searchTitle.shouldHave(Condition.text(phrase));
+    public void searchResultShouldHasPhrase(){
+        searchTitle.shouldHave(Condition.text(searchedPhrase));
     }
 
 }
