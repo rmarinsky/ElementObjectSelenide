@@ -1,0 +1,71 @@
+group 'SelenideTestProject'
+version '0.1'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'ru.d10xa.allure'
+
+buildscript {
+    repositories.jcenter()
+    dependencies {
+        classpath "ru.d10xa:gradle-allure-plugin:+"
+    }
+}
+
+allure {
+    aspectjweaver = true
+    junit = true
+
+    testNG = false
+    spock = false
+    geb = false
+
+    allureVersion = "1.4.23.HOTFIX1"
+    aspectjVersion = "1.8.9"
+
+    allureResultsDir = "build/allure-results"
+    allureReportDir = "build/reports/allure-report"
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    agent
+}
+
+dependencies {
+    agent 'org.aspectj:aspectjweaver:+'
+    compile 'junit:junit:+'
+    testCompile 'org.slf4j:slf4j-simple:+'
+    compile 'com.codeborne:selenide:+'
+    compile 'ru.d10xa:gradle-allure-plugin:+'
+}
+
+tasks.withType(Test) {
+    testTask ->
+        testTask.useJUnit()
+        testTask.ignoreFailures = true
+        testTask.systemProperties(
+                'selenide.baseUrl':System.getProperty("siteUrl"),
+                'webdriver.chrome.driver': "Drivers/chromedriver.exe",
+                'selenide.browser': 'chrome',
+                'selenide.start.maximized': 'true',
+                'selenide.page-load-strategy':'normal',
+                'selenide.savePageSource': 'false'
+        )
+}
+
+task cleanBuild(type: Delete) {
+    delete 'build'
+}
+
+compileJava.dependsOn cleanBuild
+
+test.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+}
+
+test.finalizedBy allureReport
+
