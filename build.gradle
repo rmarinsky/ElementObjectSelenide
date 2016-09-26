@@ -1,5 +1,5 @@
 group 'SelenideTestProject'
-version '0.1'
+version '0.3'
 
 apply plugin: 'java'
 apply plugin: 'ru.d10xa.allure'
@@ -29,7 +29,7 @@ dependencies {
     compile 'org.aspectj:aspectjweaver:+'
     compile 'junit:junit:+'
     compile 'org.slf4j:slf4j-nop:+'
-    compile 'com.codeborne:selenide:+'
+    compile 'com.codeborne:selenide:3.10'
     compile 'ru.yandex.qatools.allure:allure-junit-adaptor:+'
 }
 
@@ -55,3 +55,9 @@ task cleanBuild(type: Delete) {
 compileJava.dependsOn cleanBuild
 
 test.finalizedBy allureReport
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.1'
+    jarFile = './gradle-wrapper/gradle-wrapper.jar'
+    scriptFile = './gradle'
+}

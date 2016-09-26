@@ -20,7 +20,7 @@ public abstract class BaseTest {
     public TestRule customReporter = new CustomJUnitReporter();
 
     @BeforeClass public static void beforeClass(){
-        Configuration.baseUrl = "http://gsmserver.com/";
+        Configuration.baseUrl = "http://gsmserver.com";
     }
 
 }

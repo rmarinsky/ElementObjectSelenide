@@ -9,6 +9,7 @@ import gsmserver.Utils.BaseTest;
 import org.junit.Before;
 import org.junit.Test;
 import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Title;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -21,9 +22,10 @@ public class MakeOrderTests extends BaseTest{
     @Before public void before(){
         open("");
         new JSProductHelper().addProductToCart(834632, 1);
-        open("checkout/");
+        open("/checkout/");
     }
 
+    @Title("Make simple order")
     @Test public void makeOrder(){
         String country = "Sweden";
         String skrillPaymentService = "2032449552";

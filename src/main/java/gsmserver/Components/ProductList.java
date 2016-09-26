@@ -17,7 +17,7 @@ public class ProductList {
         this.searchedPhrase = searchedPhrase;
     }
 
-    private SelenideElement searchTitle = $(".search-title-highlight");
+    private final  SelenideElement searchTitle = $(".search-title-highlight");
 
     public ProductList openProductListPage(){
         open("/gsm/boxes-and-dongles/");

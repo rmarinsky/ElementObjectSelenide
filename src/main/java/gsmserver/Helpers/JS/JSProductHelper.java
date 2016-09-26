@@ -5,15 +5,6 @@ package gsmserver.Helpers.JS;
  */
 public class JSProductHelper extends JavaScriptExecutor {
 
-    /**
-     * Выполнить GET запрос на добавление продукта в указанном колличестве, в Корзину
-     * @param productId
-     * Передать значение id продукта, который следует добавить в корзину
-     * @param count
-     * Количество товаров для добавления в корзину
-     * @return
-     * Возвращает объект ProductHelper (самого себя)
-     */
     public JSProductHelper addProductToCart(final Integer productId, Integer count){
         super.sendSimpleGETRequest(String.format("/ajax/cart/add/%s,%s", productId, count));
         return this;

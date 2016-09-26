@@ -16,7 +16,7 @@ public class SearchTests extends BaseTest {
     private String query = "smart-clip";
 
     @Before public void before(){
-        open("http://gsmserver.com/");
+        open("");
     }
 
     @Title(value = "Test for search")

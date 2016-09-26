@@ -12,10 +12,6 @@ public class Cart {
     private Cart(){
     }
 
-    public Cart(String productArg){
-        this.productArg = productArg;
-    }
-
     @Step
     public static Cart openCartPage(){
         open("cart/");

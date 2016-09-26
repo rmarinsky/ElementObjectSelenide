@@ -8,19 +8,19 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class User {
 
-    private SelenideElement firstName = $("[name*='firstName']");
-    private SelenideElement lastName = $("[name*='lastName']");
-    private SelenideElement middleName = $("[name*='middleName']");
-    private SelenideElement email = $("[name*='email']");
-    private SelenideElement customCountry = $("#country_id_chosen");
-    private SelenideElement customRegion = $("#state_id_chosen");
-    private SelenideElement customCity = $("#city_id_chosen");
-    private SelenideElement inputCity = $("#city");
-    private SelenideElement address = $("[name*='[address]']"); //because of element have name = "address[address]"
-    private SelenideElement phoneCountries = $("a.styled-phone-dropdown-button");
-    private SelenideElement phoneNumber = $("div.styled-phone-edit > input");
-    private SelenideElement zip = $("[name*='zip'");
-    private SelenideElement taxId = $("[name*='taxId']");
+    private final SelenideElement firstName = $("[name*='firstName']");
+    private final SelenideElement lastName = $("[name*='lastName']");
+    private final SelenideElement middleName = $("[name*='middleName']");
+    private final SelenideElement email = $("[name*='email']");
+    private final SelenideElement customCountry = $("#country_id_chosen");
+    private final SelenideElement customRegion = $("#state_id_chosen");
+    private final SelenideElement customCity = $("#city_id_chosen");
+    private final SelenideElement inputCity = $("#city");
+    private final SelenideElement address = $("[name*='[address]']"); //because of element have name = "address[address]"
+    private final SelenideElement phoneCountries = $("a.styled-phone-dropdown-button");
+    private final SelenideElement phoneNumber = $("div.styled-phone-edit > input");
+    private final SelenideElement zip = $("[name*='zip'");
+    private final SelenideElement taxId = $("[name*='taxId']");
 
     @Step public User fillFirstName(final String value){
         this.firstName.setValue(value);
