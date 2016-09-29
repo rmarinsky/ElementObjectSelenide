@@ -1,12 +1,15 @@
 package gsmserver.Utils;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.junit.SoftAsserts;
 import gsmserver.Utils.Report.CustomCollectors.CustomScreenShooter;
 import gsmserver.Utils.Report.CustomTextReport.CustomJUnitReporter;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.rules.TestRule;
+
+import static com.codeborne.selenide.Selenide.sleep;
 
 public abstract class BaseTest {
 
@@ -21,6 +24,12 @@ public abstract class BaseTest {
 
     @BeforeClass public static void beforeClass(){
         Configuration.baseUrl = "http://gsmserver.com";
+    }
+
+    protected void clearCookies() {
+        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
+        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
+        sleep(200);
     }
 
 }

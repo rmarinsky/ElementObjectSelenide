@@ -15,6 +15,7 @@ import static org.junit.Assert.fail;
 public class HomePageTests extends BaseTest{
 
     @Before public void before(){
+        clearCookies();
         open("");
     }
 

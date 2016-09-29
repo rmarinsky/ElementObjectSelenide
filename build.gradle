@@ -44,6 +44,7 @@ tasks.withType(Test) {
                 'selenide.start.maximized': 'true',
                 'selenide.page-load-strategy':'normal',
                 'selenide.savePageSource': 'false',
+                'selenide.timeout':'6000',
                 'selenide.fileDownload': 'HTTPGET'
         )
 }
@@ -52,9 +53,16 @@ task cleanBuild(type: Delete) {
     delete 'build'
 }
 
+task openReport(type: Exec) {
+    workingDir "$buildDir"
+    commandLine 'cmd', '/c', 'allure report open'
+}
+
 compileJava.dependsOn cleanBuild
 
-test.finalizedBy allureReport
+tasks.withType(Test)*.finalizedBy allureReport
+
+allureReport.finalizedBy openReport
 
 task wrapper(type: Wrapper) {
     gradleVersion = '3.1'

@@ -16,6 +16,7 @@ public class SearchTests extends BaseTest {
     private String query = "smart-clip";
 
     @Before public void before(){
+        clearCookies();
         open("");
     }
 

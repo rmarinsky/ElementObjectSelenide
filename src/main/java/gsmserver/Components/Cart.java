@@ -14,7 +14,7 @@ public class Cart {
 
     @Step
     public static Cart openCartPage(){
-        open("cart/");
+        open("/cart/");
         return new Cart();
     }
 
@@ -25,7 +25,7 @@ public class Cart {
      */
     @Step
     public void cartShouldHaveProduct(Integer id){
-        ProductWrapper.findProduct(id, "tr").shouldBe(Condition.visible);
+        Product.findProduct(id, "tr").shouldBe(Condition.visible);
     }
 
 }

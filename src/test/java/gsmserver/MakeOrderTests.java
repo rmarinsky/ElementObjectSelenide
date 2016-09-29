@@ -3,8 +3,8 @@ package gsmserver;
 import com.codeborne.selenide.SelenideElement;
 import gsmserver.Components.DeliveryService;
 import gsmserver.Components.PaymentService;
+import gsmserver.Components.Product;
 import gsmserver.Components.User;
-import gsmserver.Helpers.JS.JSProductHelper;
 import gsmserver.Utils.BaseTest;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,8 @@ public class MakeOrderTests extends BaseTest{
 
     @Before public void before(){
         open("");
-        new JSProductHelper().addProductToCart(834632, 1);
+        clearCookies();
+        new Product().addProductToCartViaJs(834632, 1);
         open("/checkout/");
     }
 

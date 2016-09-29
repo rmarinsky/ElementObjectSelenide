@@ -5,6 +5,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
+import static gsmserver.Utils.JSExecutor.executeJS;
 
 public class User {
 
@@ -83,6 +84,18 @@ public class User {
 
     private void selectItem(String nameOfItem){
         $(byXpath(String.format("//li//span[.='%s']", nameOfItem))).scrollTo().click();
+    }
+
+    @Step public void loginUserViaJS(final String login, final String password){
+        executeJS().postRequestWithParams("/user/login/", String.format("{'login[username]':'%s', 'login[password]':'%s'}", login, password));
+    }
+
+    @Step public void setCountryUSAForUserViaJS(){
+        executeJS().postRequestWithParams("/account/data/", "{'account[countryId]':'840', 'account[stateId]':'-1'}");
+    }
+
+    @Step public void setCountrySpainForUserViaJS(){
+        executeJS().postRequestWithParams("/account/data/", "{'account[countryId]':'724', 'account[stateId]':'-1'}");
     }
 
 }
