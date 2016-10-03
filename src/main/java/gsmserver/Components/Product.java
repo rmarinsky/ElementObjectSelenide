@@ -10,7 +10,7 @@ import static gsmserver.Utils.JSExecutor.executeJS;
 
 public class Product {
 
-    final static ElementsCollection addToCartButtons = $$("a.ga-add-to-cart");
+    public final static ElementsCollection addToCartButtons = $$("a.ga-add-to-cart");
     final static SelenideElement inputQuantity = $("div.quantity-input");
 
     static SelenideElement findProduct(final Integer id, final String tagName){

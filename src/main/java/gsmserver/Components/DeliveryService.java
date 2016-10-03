@@ -9,7 +9,8 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class DeliveryService {
 
-    @Step public DeliveryService chooseDeliveryServiceAndVerifyCost(final String value){
+    @Step
+    public DeliveryService chooseDeliveryServiceAndVerifyCost(final String value){
         SelenideElement lineDeliveryCompany = $$("[data-sm-role='checkout.delivery-select']").findBy(Condition.text(value));
         String cost = lineDeliveryCompany.$("td>strong").getText();
         lineDeliveryCompany.click();

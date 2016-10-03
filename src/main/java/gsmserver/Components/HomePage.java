@@ -5,8 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import gsmserver.Utils.BaseTest;
 import ru.yandex.qatools.allure.annotations.Step;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static gsmserver.Components.Product.addToCartButtons;
 import static gsmserver.Components.Product.inputQuantity;
 
@@ -21,29 +20,15 @@ public class HomePage extends BaseTest{
         return this;
     }
 
-    private void categoryPageCheck(final SelenideElement element){
-        open(element.getAttribute("href"));
-        $(".promoblock").shouldBe(Condition.visible);
-        $(".promoblock").$$("img").forEach(SelenideElement::isImage);
-        addToCartButtons.forEach(SelenideElement::exists);
+    public void categoryPagesCheck(){
+
     }
 
-    public void categoriesPagesChecks(){
-        this.categoryPageCheck($(".main-menu-item-gsm>a"));
-        this.categoryPageCheck($(".main-menu-item-cellphones>a"));
-        this.categoryPageCheck($(".main-menu-item-equipment>a"));
-        this.categoryPageCheck($(".main-menu-item-cars>a"));
-        this.categoryPageCheck($(".main-menu-item-spares>a"));
-        this.categoryPageCheck($(".main-menu-item-toys>a"));
-        this.categoryPageCheck($(".main-menu-item-other>a"));
-    }
-
-    public void infoBlockHaveImages(){
+    @Step public void infoBlockHaveImages(){
         $(".info-blocks").$$("img").forEach(SelenideElement::isImage);
     }
 
-    @Step
-    public HomePage addToCartProduct(){
+    @Step public HomePage addToCartFirstProduct(){
         addToCartButtons.get(0).click();
         inputQuantity.shouldBe(Condition.visible);
         return this;

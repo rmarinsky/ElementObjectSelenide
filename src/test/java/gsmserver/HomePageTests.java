@@ -10,6 +10,7 @@ import org.junit.Test;
 import java.io.FileNotFoundException;
 
 import static com.codeborne.selenide.Selenide.*;
+import static gsmserver.Components.Product.addToCartButtons;
 import static org.junit.Assert.fail;
 
 public class HomePageTests extends BaseTest{
@@ -24,7 +25,12 @@ public class HomePageTests extends BaseTest{
     }
 
     @Test public void testsForCategories(){
-        new HomePage().categoriesPagesChecks();
+        for(SelenideElement element : $$("#main-menu a.mainmenu-item-link").excludeWith(Condition.cssClass("sale"))) {
+            open(element.getAttribute("href"));
+            $(".promoblock").shouldBe(Condition.visible);
+            $(".promoblock").$$("img").forEach(SelenideElement::isImage);
+            addToCartButtons.forEach(SelenideElement::exists);
+        }
     }
 
     @Test public void testsForSaleAndBenefitsPages(){
@@ -49,7 +55,7 @@ public class HomePageTests extends BaseTest{
     }
 
     @Test public void addingToCartProductTest(){
-        new HomePage().addToCartProduct().
+        new HomePage().addToCartFirstProduct().
                 cartIconHaveCount();
     }
 

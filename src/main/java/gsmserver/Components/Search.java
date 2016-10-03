@@ -8,10 +8,11 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class Search {
 
-    private final SelenideElement fieldSearch = $(byName("q"));
-    private final SelenideElement submitSearch = $("a.search-input-submit");
+    private final SelenideElement fieldSearch = $(byName("q")),
+            submitSearch = $("a.search-input-submit");
 
-    @Step public ProductList searchFor(String q){
+    @Step
+    public ProductList searchFor(String q){
         this.fieldSearch.val(q);
         this.submitSearch.submit();
         return new ProductList(q);

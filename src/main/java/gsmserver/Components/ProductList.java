@@ -19,6 +19,7 @@ public class ProductList {
 
     private final  SelenideElement searchTitle = $(".search-title-highlight");
 
+    @Step
     public ProductList openProductListPage(){
         open("/gsm/boxes-and-dongles/");
         return new ProductList();

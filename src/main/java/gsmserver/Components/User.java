@@ -9,19 +9,32 @@ import static gsmserver.Utils.JSExecutor.executeJS;
 
 public class User {
 
-    private final SelenideElement firstName = $("[name*='firstName']");
-    private final SelenideElement lastName = $("[name*='lastName']");
-    private final SelenideElement middleName = $("[name*='middleName']");
-    private final SelenideElement email = $("[name*='email']");
-    private final SelenideElement customCountry = $("#country_id_chosen");
-    private final SelenideElement customRegion = $("#state_id_chosen");
-    private final SelenideElement customCity = $("#city_id_chosen");
-    private final SelenideElement inputCity = $("#city");
-    private final SelenideElement address = $("[name*='[address]']"); //because of element have name = "address[address]"
-    private final SelenideElement phoneCountries = $("a.styled-phone-dropdown-button");
-    private final SelenideElement phoneNumber = $("div.styled-phone-edit > input");
-    private final SelenideElement zip = $("[name*='zip'");
-    private final SelenideElement taxId = $("[name*='taxId']");
+    public final SelenideElement
+            login = $("[name*='username']"),
+            password = $("[name*='password']"),
+            firstName = $("[name*='firstName']"),
+            lastName = $("[name*='lastName']"),
+            middleName = $("[name*='middleName']"),
+            email = $("[name*='email']"),
+            customCountry = $("#country_id_chosen"),
+            customRegion = $("#state_id_chosen"),
+            customCity = $("#city_id_chosen"),
+            inputCity = $("#city"),
+            address = $("[name*='[address]']"), //because of element have name = "address[address]"
+            phoneCountries = $("a.styled-phone-dropdown-button"),
+            phoneNumber = $("div.styled-phone-edit > input"),
+            zip = $("[name*='zip'"),
+            taxId = $("[name*='taxId']");
+
+    @Step public User fillLogin(final String value){
+        this.login.setValue(value);
+        return this;
+    }
+
+    @Step public User fillPassword(final String value){
+        this.password.setValue(value);
+        return this;
+    }
 
     @Step public User fillFirstName(final String value){
         this.firstName.setValue(value);

@@ -3,19 +3,21 @@ package gsmserver.Components;
 import com.codeborne.selenide.Condition;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class Cart {
 
     private String productArg;
 
-    private Cart(){
+    public Cart(){
+        $("#cart").shouldBe(Condition.visible);
     }
 
     @Step
-    public static Cart openCartPage(){
+    public Cart openCartPage(){
         open("/cart/");
-        return new Cart();
+        return this;
     }
 
     /**
