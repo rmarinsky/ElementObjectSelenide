@@ -12,27 +12,31 @@ public class LoginPopUp {
 
     private User user;
 
-    public LoginPopUp(){
+    LoginPopUp(){
         $("#login-view").shouldBe(Condition.visible);
         this.user = new User();
     }
 
-    @Step public TopLinks loginUser(final String login, final String password){
+    @Step
+    public TopLinks loginUser(final String login, final String password){
         user.fillLogin(login).
                 fillPassword(password);
         this.submit();
         return new TopLinks();
     }
 
-    @Step private void submit(){
+    @Step
+    private void submit(){
         $("button[type='submit']").click();
     }
 
-    @Step private void shouldNotHaveClassError(SelenideElement element){
+    @Step
+    private void shouldNotHaveClassError(SelenideElement element){
         element.shouldNotHave(classError());
     }
 
-    @Step private void shouldHaveClassError(SelenideElement element){
+    @Step
+    private void shouldHaveClassError(SelenideElement element){
         element.shouldHave(classError());
     }
 

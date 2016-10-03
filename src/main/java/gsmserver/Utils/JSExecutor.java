@@ -7,19 +7,16 @@ import static com.codeborne.selenide.Selenide.sleep;
 
 public class JSExecutor {
 
-    private JSExecutor(){}
-
-    public static JSExecutor executeJS(){
-        return new JSExecutor();
+    public JSExecutor(){
+        Selenide.executeJavaScript("$(document).ready()");
     }
 
-    public void postRequestWithParams(final String requestUrl, final String param){
-        sleep(200);
+    public void POSTWithParams(final String requestUrl, final String param){
         Selenide.executeJavaScript(String.format("$.post('%s%s', %s)", baseUrl, requestUrl, param));
         sleep(200);
     }
 
-    public void getRequestWithParams(final String requestUrl, final String param){
+    public void GETWithParam(final String requestUrl, final String param){
         Selenide.executeJavaScript(String.format("$.get('%s', %s)", requestUrl, param));
     }
 
@@ -28,7 +25,7 @@ public class JSExecutor {
      * @param request
      * request with params
      */
-    public void simpleGETRequest(final String request){
+    public void GETRequest(final String request){
         Selenide.executeJavaScript(String.format("$.get('%s%s')", baseUrl, request));
         sleep(200);
     }

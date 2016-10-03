@@ -2,11 +2,11 @@ package gsmserver.Components;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import gsmserver.Utils.JSExecutor;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static gsmserver.Utils.JSExecutor.executeJS;
 
 public class Product {
 
@@ -19,7 +19,7 @@ public class Product {
 
     @Step
     public void addProductToCartViaJs(final Integer productId, Integer count){
-        executeJS().simpleGETRequest(String.format("/ajax/cart/add/%s,%s", productId, count));
+        new JSExecutor().GETRequest(String.format("/ajax/cart/add/%s,%s", productId, count));
     }
 
     public void addProductsToCart(Integer... productIds){

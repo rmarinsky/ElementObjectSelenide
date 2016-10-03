@@ -19,9 +19,7 @@ import static gsmserver.Utils.Random.generateRandomString;
 @Description(value = "Tests for making orders")
 public class MakeOrderTests extends BaseTest{
 
-    @Before public void before(){
-        open("");
-        clearCookies();
+    @Before public void beforeMakeOrder(){
         new Product().addProductToCartViaJs(834632, 1);
         open("/checkout/");
     }

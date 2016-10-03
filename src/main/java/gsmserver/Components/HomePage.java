@@ -24,17 +24,20 @@ public class HomePage extends BaseTest{
 
     }
 
-    @Step public void infoBlockHaveImages(){
+    @Step
+    public void infoBlockHaveImages(){
         $(".info-blocks").$$("img").forEach(SelenideElement::isImage);
     }
 
-    @Step public HomePage addToCartFirstProduct(){
+    @Step
+    public HomePage addToCartFirstProduct(){
         addToCartButtons.get(0).click();
         inputQuantity.shouldBe(Condition.visible);
         return this;
     }
 
-    @Step public void cartIconHaveCount(){
+    @Step
+    public void cartIconHaveCount(){
         $(".cart-indicator a.cart-icon").shouldHave(Condition.attribute("data-cart-quantity", "1"));
     }
 

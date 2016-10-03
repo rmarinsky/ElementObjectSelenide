@@ -2,18 +2,12 @@ package gsmserver.PopUpsTests;
 
 import gsmserver.Components.TopLinks;
 import gsmserver.Utils.BaseTest;
-import org.junit.Before;
 import org.junit.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-import static com.codeborne.selenide.Selenide.open;
 import static gsmserver.Utils.Random.generateRandomString;
 
 public class LoginPopUpTests extends BaseTest {
-
-    @Before public void before(){
-        open("/");
-    }
 
     @Test public void loginUserTest(){
         new TopLinks().openLoginPopup().
