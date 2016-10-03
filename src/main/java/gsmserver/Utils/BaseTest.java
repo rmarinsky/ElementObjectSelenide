@@ -1,12 +1,10 @@
 package gsmserver.Utils;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.junit.SoftAsserts;
 import gsmserver.Utils.Report.CustomCollectors.CustomScreenShooter;
 import gsmserver.Utils.Report.CustomTextReport.CustomJUnitReporter;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.rules.TestRule;
 
@@ -24,15 +22,15 @@ public abstract class BaseTest {
     @Rule
     public TestRule customReporter = new CustomJUnitReporter();
 
-    @BeforeClass
+    /*@BeforeClass
     public static void beforeClass(){
         Configuration.baseUrl = "http://gsmserver.com";
-    }
+    }*/
 
     @Before
     public void before(){
-        open("");
         clearCookies();
+        open("");
     }
 
     private void clearCookies() {

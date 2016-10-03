@@ -4,12 +4,12 @@ import com.codeborne.selenide.Screenshots;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
+import java.io.IOException;
+
 import static gsmserver.Utils.Report.CustomCollectors.AllureReportsUtils.attachScreenshot;
 
 
 public class CustomScreenShooter extends TestWatcher {
-
-    private boolean captureSuccessfulTests;
 
     private CustomScreenShooter() {
     }
@@ -18,26 +18,18 @@ public class CustomScreenShooter extends TestWatcher {
         return new CustomScreenShooter();
     }
 
-    public CustomScreenShooter succeededTests() {
-        this.captureSuccessfulTests = true;
-        return this;
-    }
-
     @Override
     protected void starting(Description test) {
         Screenshots.startContext(test.getClassName(), test.getMethodName());
     }
 
     @Override
-    protected void succeeded(Description test) {
-        if (this.captureSuccessfulTests) {
-            attachScreenshot();
-        }
-    }
-
-    @Override
     protected void failed(Throwable e, Description description) {
-        attachScreenshot();
+        try {
+            attachScreenshot();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
 
     @Override

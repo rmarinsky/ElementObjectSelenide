@@ -1,16 +1,18 @@
 package gsmserver.Utils.Report.CustomCollectors;
 
-import com.codeborne.selenide.WebDriverRunner;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import com.google.common.io.Files;
 import ru.yandex.qatools.allure.annotations.Attachment;
+
+import java.io.IOException;
+
+import static com.codeborne.selenide.Screenshots.getLastScreenshot;
 
 
 public class AllureReportsUtils {
 
     @Attachment(value = "Screenshot", type = "image/png")
-    static byte[] attachScreenshot() {
-        return ((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES);
+    static byte[] attachScreenshot() throws IOException {
+        return Files.toByteArray(getLastScreenshot());
     }
 
     @Attachment(value = "Test log")

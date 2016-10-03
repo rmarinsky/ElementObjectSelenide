@@ -38,14 +38,15 @@ tasks.withType(Test) {
         testTask.useJUnit()
         testTask.ignoreFailures = true
         testTask.systemProperties(
-                'selenide.baseUrl':System.getProperty("siteUrl"),
+                'selenide.baseUrl':'http://gsmserver.com',
                 'webdriver.chrome.driver': "Drivers/chromedriver.exe",
                 'selenide.browser': 'chrome',
                 'selenide.start.maximized': 'true',
                 'selenide.page-load-strategy':'normal',
                 'selenide.savePageSource': 'false',
                 'selenide.timeout':'6000',
-                'selenide.fileDownload': 'HTTPGET'
+                'selenide.fileDownload': 'HTTPGET',
+                'selenide.fastSetValue':'true'
         )
 }
 

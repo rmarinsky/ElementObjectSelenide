@@ -7,6 +7,10 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class TopLinks {
 
+    public TopLinks(){
+        $("#top-links").shouldBe(Condition.visible);
+    }
+
     @Step
     public LoginPopUp openLoginPopup(){
         $("a.login").shouldBe(Condition.visible).click();

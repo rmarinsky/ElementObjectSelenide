@@ -29,13 +29,13 @@ public class User {
 
     @Step
     User fillLogin(final String value){
-        this.login.setValue(value);
+        this.login.sendKeys(value);
         return this;
     }
 
     @Step
     User fillPassword(final String value){
-        this.password.setValue(value);
+        this.password.sendKeys(value);
         return this;
     }
 

@@ -15,9 +15,9 @@ public class Cart {
     }
 
     @Step
-    public Cart openCartPage(){
+    public static Cart openCartPage(){
         open("/cart/");
-        return this;
+        return new Cart();
     }
 
     /**
