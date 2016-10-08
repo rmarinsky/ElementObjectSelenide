@@ -31,6 +31,7 @@ dependencies {
     compile 'org.slf4j:slf4j-nop:+'
     compile 'com.codeborne:selenide:3.10'
     compile 'ru.yandex.qatools.allure:allure-junit-adaptor:+'
+    compile 'org.rendersnake:rendersnake:+'
 }
 
 tasks.withType(Test) {
@@ -38,14 +39,14 @@ tasks.withType(Test) {
         testTask.useJUnit()
         testTask.ignoreFailures = true
         testTask.systemProperties(
-                'selenide.baseUrl':'http://gsmserver.com',
-                'webdriver.chrome.driver': "Drivers/chromedriver.exe",
-                'selenide.browser': 'chrome',
-                'selenide.start.maximized': 'true',
+                'selenide.baseUrl':'http://rc.gsmserver.com',
+                'webdriver.chrome.driver':'Drivers/chromedriver.exe',
+                'selenide.browser':'chrome',
+                'selenide.start.maximized':'true',
                 'selenide.page-load-strategy':'normal',
-                'selenide.savePageSource': 'false',
+                'selenide.savePageSource':'false',
                 'selenide.timeout':'6000',
-                'selenide.fileDownload': 'HTTPGET',
+                'selenide.fileDownload':'HTTPGET',
                 'selenide.fastSetValue':'true'
         )
 }
@@ -63,4 +64,4 @@ task openReport(type: Exec) {
 
 tasks.withType(Test)*.finalizedBy allureReport
 
-allureReport.finalizedBy openReport
+//allureReport.finalizedBy openReport

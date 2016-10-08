@@ -8,15 +8,19 @@ import java.io.IOException;
 import static com.codeborne.selenide.Screenshots.getLastScreenshot;
 
 
-public class AllureReportsUtils {
+public class AllureReportUtil {
 
     @Attachment(value = "Screenshot", type = "image/png")
-    static byte[] attachScreenshot() throws IOException {
-        return Files.toByteArray(getLastScreenshot());
+    static byte[] attachScreenshot() {
+        try {
+            return Files.toByteArray(getLastScreenshot());
+        } catch (IOException e) {
+            return new byte[0];
+        }
     }
 
     @Attachment(value = "Test log")
-    public static String attachText(String text) {
+    public static String attachLog(String text) {
         return text;
     }
 

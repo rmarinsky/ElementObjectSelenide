@@ -4,17 +4,13 @@ import com.codeborne.selenide.Screenshots;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
-import java.io.IOException;
-
-import static gsmserver.Utils.Report.CustomCollectors.AllureReportsUtils.attachScreenshot;
-
 
 public class CustomScreenShooter extends TestWatcher {
 
     private CustomScreenShooter() {
     }
 
-    public static CustomScreenShooter failedTests() {
+    public static CustomScreenShooter onFailedTests() {
         return new CustomScreenShooter();
     }
 
@@ -25,11 +21,7 @@ public class CustomScreenShooter extends TestWatcher {
 
     @Override
     protected void failed(Throwable e, Description description) {
-        try {
-            attachScreenshot();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
+        AllureReportUtil.attachScreenshot();
     }
 
     @Override
