@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$$;
 public class Product {
 
     public final static ElementsCollection addToCartButtons = $$("a.ga-add-to-cart");
-    final static SelenideElement inputQuantity = $("div.quantity-input");
+    public final static SelenideElement inputQuantity = $("div.quantity-input");
 
     static SelenideElement findProduct(final Integer id, final String tagName){
         return $(String.format("%s[data-product-id='%s']", tagName, id));

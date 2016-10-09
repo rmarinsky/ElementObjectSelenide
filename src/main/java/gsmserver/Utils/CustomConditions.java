@@ -2,8 +2,11 @@ package gsmserver.Utils;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import ru.yandex.qatools.allure.annotations.Step;
 
-public class CustomConditions {
+import static com.codeborne.selenide.Selenide.$;
+
+public final class CustomConditions {
 
     public static Condition classError() {
         return Condition.cssClass("error");
@@ -33,6 +36,11 @@ public class CustomConditions {
         for(SelenideElement element : elements) {
             element.parent().shouldNotHave(labelRequired());
         }
+    }
+
+    @Step
+    public static void submitForm(){
+        $("button[type='submit']").click();
     }
 
 }

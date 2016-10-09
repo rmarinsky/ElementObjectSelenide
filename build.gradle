@@ -39,7 +39,7 @@ tasks.withType(Test) {
         testTask.useJUnit()
         testTask.ignoreFailures = true
         testTask.systemProperties(
-                'selenide.baseUrl':'http://rc.gsmserver.com',
+                'selenide.baseUrl':'http://gsmserver.com',
                 'webdriver.chrome.driver':'Drivers/chromedriver.exe',
                 'selenide.browser':'chrome',
                 'selenide.start.maximized':'true',

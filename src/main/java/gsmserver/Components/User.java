@@ -9,14 +9,15 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class User {
 
-    final SelenideElement
+    public final SelenideElement
             login = $("[name*='username']"),
-            password = $("[name*='password']");
-    private final SelenideElement
+            password = $("[name*='password']"),
+            passwordConfirm = $("[name*='password_confirm']"),
             firstName = $("[name*='firstName']"),
+            email = $("[name*='email']");
+    private final SelenideElement
             lastName = $("[name*='lastName']"),
             middleName = $("[name*='middleName']"),
-            email = $("[name*='email']"),
             customCountry = $("#country_id_chosen"),
             customRegion = $("#state_id_chosen"),
             customCity = $("#city_id_chosen"),
@@ -28,13 +29,13 @@ public class User {
             taxId = $("[name*='taxId']");
 
     @Step
-    User fillLogin(final String value){
+    public User fillLogin(final String value){
         this.login.sendKeys(value);
         return this;
     }
 
     @Step
-    User fillPassword(final String value){
+    public User fillPassword(final String value){
         this.password.sendKeys(value);
         return this;
     }

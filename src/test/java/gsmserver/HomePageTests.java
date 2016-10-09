@@ -2,7 +2,7 @@ package gsmserver;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import gsmserver.Components.HomePage;
+import gsmserver.Pages.HomePage;
 import gsmserver.Utils.BaseTest;
 import org.junit.Test;
 

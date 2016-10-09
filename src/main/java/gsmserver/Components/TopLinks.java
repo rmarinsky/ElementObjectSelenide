@@ -1,8 +1,10 @@
 package gsmserver.Components;
 
 import com.codeborne.selenide.Condition;
+import gsmserver.Components.Popups.LoginView;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class TopLinks {
@@ -12,9 +14,17 @@ public class TopLinks {
     }
 
     @Step
-    public LoginPopUp openLoginPopup(){
+    public LoginView openLoginPopup(){
         $("a.login").shouldBe(Condition.visible).click();
-        return new LoginPopUp();
+        return new LoginView();
+    }
+
+    @Step
+    public TopLinks logoutUser(){
+        $("a.account").click();
+        $("ul.submenu.shadow.account-dropdown").$(byLinkText("Log out")).click();
+        $("a.login").shouldBe(Condition.visible);
+        return this;
     }
 
     @Step
