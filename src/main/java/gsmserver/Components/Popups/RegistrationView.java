@@ -5,7 +5,7 @@ import gsmserver.Components.User;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Selenide.$;
-import static gsmserver.Utils.CustomConditions.submitForm;
+import static gsmserver.Components.GeneralForm.submitForm;
 
 public class RegistrationView {
 

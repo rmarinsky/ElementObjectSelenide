@@ -2,12 +2,15 @@ package gsmserver.Components.Popups;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import gsmserver.Components.GeneralForm;
 import gsmserver.Components.TopLinks;
 import gsmserver.Components.User;
 import gsmserver.Utils.CustomConditions;
 import ru.yandex.qatools.allure.annotations.Step;
+
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selenide.$;
+import static gsmserver.Components.GeneralForm.submitForm;
 import static gsmserver.Utils.CustomConditions.*;
 
 public class LoginView {
@@ -46,8 +49,7 @@ public class LoginView {
         $("td.buy-without-signup-message").click();
         this.shouldHaveClassError(this.user.login);
         this.shouldHaveClassError(this.user.password);
-        submitForm();
-        this.shouldHaveClassError($("div.form-summary"));
+        GeneralForm.submitForm().submitFailed();
         this.user.fillLogin(value);
         $("td.buy-without-signup-message").click();
         this.shouldNotHaveClassError(this.user.login);
@@ -56,15 +58,15 @@ public class LoginView {
         this.shouldNotHaveClassError(this.user.password);
         this.user.fillLogin(value);
         this.user.password.clear();
-        submitForm();
+        GeneralForm.submitForm();
         shouldNotHaveClassError(this.user.login);
         this.user.password.shouldHave(classError(), cannotBeBlankTitleTip());
-        this.shouldHaveClassError($("div.form-summary"));
+        GeneralForm.submitForm().submitFailed();
         this.user.fillPassword(value);
         submitForm();
         this.user.login.shouldHave(classError(), originalTitleTip("Incorrect username or password"));
         this.user.password.shouldHave(classError(), originalTitleTip("Incorrect username or password"));
-        this.shouldHaveClassError($("div.form-summary"));
+        GeneralForm.submitForm().submitFailed();
         return this;
     }
 

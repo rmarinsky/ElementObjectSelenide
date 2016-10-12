@@ -1,10 +1,10 @@
 package gsmserver.Pages;
 
+import gsmserver.Components.GeneralForm;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
-import static gsmserver.Utils.CustomConditions.submitForm;
 
 public final class ConfirmationPage {
 
@@ -25,7 +25,7 @@ public final class ConfirmationPage {
     @Step
     public void subscribeOnSubjectByIndex(int i){
         $("label.styled-checkbox", i).click();
-        submitForm();
+        GeneralForm.submitForm().submitSucceeded();
     }
 
 }

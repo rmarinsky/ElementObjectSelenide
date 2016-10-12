@@ -10,7 +10,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "ru.d10xa:gradle-allure-plugin:+"
+        classpath "ru.d10xa:gradle-allure-plugin:0.5.0"
     }
 }
 
@@ -19,6 +19,9 @@ allure {
     junit = true
     allureResultsDir = "$buildDir/allure-results"
     allureReportDir = "$buildDir/allure-report"
+
+    allureVersion = "1.4.24.RC2"
+
 }
 repositories {
     mavenCentral()
@@ -30,8 +33,9 @@ dependencies {
     compile 'junit:junit:+'
     compile 'org.slf4j:slf4j-nop:+'
     compile 'com.codeborne:selenide:3.10'
-    compile 'ru.yandex.qatools.allure:allure-junit-adaptor:+'
+    compile 'ru.yandex.qatools.allure:allure-junit-adaptor:1.4.24.RC2'
     compile 'org.rendersnake:rendersnake:+'
+    compile 'com.automation-remarks:video-recorder-junit:+'
 }
 
 tasks.withType(Test) {
@@ -39,7 +43,6 @@ tasks.withType(Test) {
         testTask.useJUnit()
         testTask.ignoreFailures = true
         testTask.systemProperties(
-                'selenide.baseUrl':'http://gsmserver.com',
                 'webdriver.chrome.driver':'Drivers/chromedriver.exe',
                 'selenide.browser':'chrome',
                 'selenide.start.maximized':'true',
@@ -47,7 +50,13 @@ tasks.withType(Test) {
                 'selenide.savePageSource':'false',
                 'selenide.timeout':'6000',
                 'selenide.fileDownload':'HTTPGET',
-                'selenide.fastSetValue':'true'
+                'selenide.fastSetValue':'true',
+                'selenide.screenshots':'false',
+                'video.folder':"$buildDir/allure-results/videos",
+                'recorder.type':'FFMPEG',
+                'video.enabled':'true',
+                'video.mode':'ALL',
+                'video.save.mode':'ALL'
         )
 }
 

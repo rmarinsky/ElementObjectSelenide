@@ -1,4 +1,4 @@
-package gsmserver;
+package gsmserver.EndToEndTests;
 
 import com.codeborne.selenide.SelenideElement;
 import gsmserver.Components.DeliveryService;

@@ -14,17 +14,17 @@ public class User {
             password = $("[name*='password']"),
             passwordConfirm = $("[name*='password_confirm']"),
             firstName = $("[name*='firstName']"),
-            email = $("[name*='email']");
-    private final SelenideElement
+            email = $("[name*='email']"),
             lastName = $("[name*='lastName']"),
+            inputCity = $("#city"),
             middleName = $("[name*='middleName']"),
             customCountry = $("#country_id_chosen"),
             customRegion = $("#state_id_chosen"),
             customCity = $("#city_id_chosen"),
-            inputCity = $("#city"),
             address = $("[name*='[address]']"), //because of element have name = "address[address]"
             phoneCountries = $("a.styled-phone-dropdown-button"),
             phoneNumber = $("div.styled-phone-edit > input"),
+            birthday = $("#birthday"),
             zip = $("[name*='zip'"),
             taxId = $("[name*='taxId']");
 

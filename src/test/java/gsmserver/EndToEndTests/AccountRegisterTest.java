@@ -26,17 +26,17 @@ public class AccountRegisterTest extends BaseTest {
     public void registerNewUserAndChangePassword(){
         HomePage.openHomePage();
         new TopLinks().openLoginPopup().openRegistrationView().
-                registerUser(super.testValue, getTempEMail(), getTempEMail());
+                registerUser(super.defaultTestValue, getTempEMail(), getTempEMail());
         TempMail.openTempMail().
                 confirmRegistration().checkContentOfConfirmationRegistration().subscribeOnSubjectByIndex(0);
         new AccountSubscriptions().shouldBeSelectedSubscriptionByIndex(0);
 
-        AccountPersonalData.openPersonalDataPage().loginEmailFirstNameShouldBe(super.testValue, getTempEMail(), getTempEMail());
+        AccountPersonalData.openPersonalDataPage().loginEmailFirstNameShouldBe(super.defaultTestValue, getTempEMail(), getTempEMail());
 
         AccountChangePassword.openChangePasswordPage().changePassword(getTempPassword());
         TempMail.openTempMail().conformPasswordRecovery().checkContentConfirmationChangePassword();
         new TopLinks().logoutUser().
-                openLoginPopup().loginUser(getTempEMail(), getTempPassword()).userHaveName(super.testValue);
+                openLoginPopup().loginUser(getTempEMail(), getTempPassword()).userHaveName(super.defaultTestValue);
 
         AccountSubscriptions.openAccountSubscriptionsPage().shouldBeSelectedSubscriptionByIndex(0);
     }

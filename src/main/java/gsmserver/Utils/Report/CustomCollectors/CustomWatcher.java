@@ -5,14 +5,7 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
 
-public class CustomScreenShooter extends TestWatcher {
-
-    private CustomScreenShooter() {
-    }
-
-    public static CustomScreenShooter onFailedTests() {
-        return new CustomScreenShooter();
-    }
+public class CustomWatcher extends TestWatcher {
 
     @Override
     protected void starting(Description test) {
@@ -22,6 +15,7 @@ public class CustomScreenShooter extends TestWatcher {
     @Override
     protected void failed(Throwable e, Description description) {
         AllureReportUtil.attachScreenshot();
+        //AllureReportUtil.attachVideo();
     }
 
     @Override
