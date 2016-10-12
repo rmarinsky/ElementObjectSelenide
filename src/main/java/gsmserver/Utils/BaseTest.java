@@ -2,14 +2,17 @@ package gsmserver.Utils;
 
 import com.automation.remarks.junit.VideoRule;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Screenshots;
 import com.codeborne.selenide.WebDriverRunner;
 import gsmserver.Pages.HomePage;
-import gsmserver.Utils.Report.CustomCollectors.CustomWatcher;
+import gsmserver.Utils.Report.CustomCollectors.AllureReportUtil;
 import gsmserver.Utils.Report.CustomTextReport.HTMLReport;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.sleep;
@@ -26,7 +29,24 @@ public abstract class BaseTest {
     public VideoRule videoRule = new VideoRule();
 
     @Rule
-    public CustomWatcher makeScreenshotOnFailedTest = new CustomWatcher();
+    public TestWatcher makeScreenshotOnFailedTest = new TestWatcher() {
+        @Override
+        protected void starting(Description test) {
+            Screenshots.startContext(test.getClassName(), test.getMethodName());
+        }
+
+        @Override
+        protected void failed(Throwable e, Description description) {
+            new AllureReportUtil().attachScreenshot();
+            //new AllureReportUtil().attachVideo();
+        }
+
+        @Override
+        protected void finished(Description description) {
+            Screenshots.finishContext();
+        }
+
+    };
 
     @Rule
     public TestRule customReporter = new HTMLReport();

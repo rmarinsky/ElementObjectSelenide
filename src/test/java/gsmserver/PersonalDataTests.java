@@ -1,6 +1,9 @@
 package gsmserver;
 
-import com.automation.remarks.video.annotations.Video;
+import com.automation.remarks.video.enums.RecorderType;
+import com.automation.remarks.video.enums.RecordingMode;
+import com.automation.remarks.video.enums.VideoSaveMode;
+import com.automation.remarks.video.recorder.VideoRecorder;
 import com.codeborne.selenide.Condition;
 import gsmserver.Components.Account.AccountPersonalData;
 import gsmserver.Components.GeneralForm;
@@ -46,7 +49,7 @@ public class PersonalDataTests extends BaseTest{
                 verifyVisibleOfRequiredLabelCom();
     }
 
-    @Video
+    //@Video
     @Test
     public void verifySelectingCountryAndStateTest(){
         User user = new User();
@@ -65,7 +68,8 @@ public class PersonalDataTests extends BaseTest{
 
     @AfterClass
     public static void afterClass(){
-        AllureReportUtil.attachVideo();
+        VideoRecorder.conf().withVideoSaveMode(VideoSaveMode.ALL).withRecorderType(RecorderType.FFMPEG).withRecordMode(RecordingMode.ALL);
+        new AllureReportUtil().attachVideo(VideoRecorder.getLastRecording());
     }
 
 }

@@ -10,7 +10,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "ru.d10xa:gradle-allure-plugin:0.5.0"
+        classpath "ru.d10xa:gradle-allure-plugin:+"
     }
 }
 
@@ -19,10 +19,8 @@ allure {
     junit = true
     allureResultsDir = "$buildDir/allure-results"
     allureReportDir = "$buildDir/allure-report"
-
-    allureVersion = "1.4.24.RC2"
-
 }
+
 repositories {
     mavenCentral()
     jcenter()
@@ -33,7 +31,7 @@ dependencies {
     compile 'junit:junit:+'
     compile 'org.slf4j:slf4j-nop:+'
     compile 'com.codeborne:selenide:3.10'
-    compile 'ru.yandex.qatools.allure:allure-junit-adaptor:1.4.24.RC2'
+    compile 'ru.yandex.qatools.allure:allure-junit-adaptor:1.4.+'
     compile 'org.rendersnake:rendersnake:+'
     compile 'com.automation-remarks:video-recorder-junit:+'
 }
@@ -52,7 +50,7 @@ tasks.withType(Test) {
                 'selenide.fileDownload':'HTTPGET',
                 'selenide.fastSetValue':'true',
                 'selenide.screenshots':'false',
-                'video.folder':"$buildDir/allure-results/videos",
+                //'video.folder':"$buildDir/allure-results/videos",
                 'recorder.type':'FFMPEG',
                 'video.enabled':'true',
                 'video.mode':'ALL',
