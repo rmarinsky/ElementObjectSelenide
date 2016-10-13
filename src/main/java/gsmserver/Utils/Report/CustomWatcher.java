@@ -1,28 +1,31 @@
-package gsmserver.Utils.Report.CustomTextReport;
+package gsmserver.Utils.Report;
 
+import com.codeborne.selenide.Screenshots;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
-public class HTMLReport extends TestWatcher {
+
+public class CustomWatcher extends TestWatcher {
 
     private final HTMLTemplate report = new HTMLTemplate();
 
     private boolean onFailedTest = true;
     private boolean onSucceededTest = true;
 
-    public HTMLReport onFailedTest(boolean onFailedTest) {
+    public CustomWatcher onFailedTest(boolean onFailedTest) {
         this.onFailedTest = onFailedTest;
         return this;
     }
 
-    public HTMLReport onSucceededTest(boolean onSucceededTest) {
+    public CustomWatcher onSucceededTest(boolean onSucceededTest) {
         this.onSucceededTest = onSucceededTest;
         return this;
     }
 
     @Override
-    protected void starting(Description description) {
+    protected void starting(Description test) {
         if (onFailedTest || onSucceededTest) {
+            Screenshots.startContext(test.getClassName(), test.getMethodName());
             report.start();
         }
     }
@@ -31,6 +34,8 @@ public class HTMLReport extends TestWatcher {
     protected void succeeded(Description description) {
         if (onSucceededTest) {
             report.finish();
+            AllureReportUtil.attachScreenshot();
+            AllureReportUtil.attachVideo();
         }
     }
 
@@ -38,6 +43,8 @@ public class HTMLReport extends TestWatcher {
     protected void failed(Throwable e, Description description) {
         if (onFailedTest) {
             report.finish();
+            AllureReportUtil.attachScreenshot();
+            AllureReportUtil.attachVideo();
         }
     }
 

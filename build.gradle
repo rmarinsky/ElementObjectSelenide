@@ -39,6 +39,8 @@ dependencies {
 tasks.withType(Test) {
     testTask ->
         testTask.useJUnit()
+        testTask.reports.junitXml.enabled = false
+        testTask.reports.html.enabled = false
         testTask.ignoreFailures = true
         testTask.systemProperties(
                 'webdriver.chrome.driver':'Drivers/chromedriver.exe',
@@ -50,11 +52,11 @@ tasks.withType(Test) {
                 'selenide.fileDownload':'HTTPGET',
                 'selenide.fastSetValue':'true',
                 'selenide.screenshots':'false',
-                //'video.folder':"$buildDir/allure-results/videos",
+                'video.folder':"$buildDir/allure-results/videos",
                 'recorder.type':'FFMPEG',
                 'video.enabled':'true',
                 'video.mode':'ALL',
-                'video.save.mode':'ALL'
+                'video.save.mode':'FAILED_ONLY'
         )
 }
 
