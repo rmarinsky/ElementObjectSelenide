@@ -1,7 +1,6 @@
 package gsmserver;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import gsmserver.Components.Account.AccountPersonalData;
 import gsmserver.Components.GeneralForm;
 import gsmserver.Components.User;
@@ -13,7 +12,6 @@ import org.junit.Test;
 import static com.codeborne.selenide.Selenide.refresh;
 import static gsmserver.Utils.DefaultData.defaultEmail;
 import static gsmserver.Utils.DefaultData.defaultPassword;
-import static org.junit.Assert.fail;
 
 public class PersonalDataTests extends BaseTest{
 
@@ -43,8 +41,6 @@ public class PersonalDataTests extends BaseTest{
     public void verifyVisibleOfRequiredLabelComTest(){
         AccountPersonalData.openPersonalDataPage().
                 verifyVisibleOfRequiredLabelCom();
-        Configuration.holdBrowserOpen = true;
-        fail();
     }
 
     @Test
