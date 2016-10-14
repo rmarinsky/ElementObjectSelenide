@@ -58,12 +58,12 @@ public class LoginView {
         this.shouldNotHaveClassError(this.user.password);
         this.user.fillLogin(value);
         this.user.password.clear();
-        GeneralForm.submitForm();
+        GeneralForm.submitForm().submitFailed();
         shouldNotHaveClassError(this.user.login);
         this.user.password.shouldHave(classError(), cannotBeBlankTitleTip());
         GeneralForm.submitForm().submitFailed();
         this.user.fillPassword(value);
-        submitForm();
+        GeneralForm.submitForm().submitFailed();
         this.user.login.shouldHave(classError(), originalTitleTip("Incorrect username or password"));
         this.user.password.shouldHave(classError(), originalTitleTip("Incorrect username or password"));
         GeneralForm.submitForm().submitFailed();

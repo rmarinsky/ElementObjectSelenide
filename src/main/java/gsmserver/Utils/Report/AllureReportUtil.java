@@ -30,7 +30,7 @@ class AllureReportUtil {
         }
     }
 
-    @Attachment(value = "Log in table")
+    @Attachment(value = "Log in table", type = "text/html")
     static String attachLog(String text) {
         return text;
     }

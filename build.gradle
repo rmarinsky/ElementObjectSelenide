@@ -44,11 +44,12 @@ tasks.withType(Test) {
         testTask.ignoreFailures = true
         testTask.systemProperties(
                 'webdriver.chrome.driver':'Drivers/chromedriver.exe',
+                'chrome.switches': '--disable-extensions',
                 'selenide.browser':'chrome',
                 'selenide.start.maximized':'true',
                 'selenide.page-load-strategy':'normal',
                 'selenide.savePageSource':'false',
-                'selenide.timeout':'6000',
+                'selenide.timeout':'4000',
                 'selenide.fileDownload':'HTTPGET',
                 'selenide.fastSetValue':'true',
                 'selenide.screenshots':'false',
