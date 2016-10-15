@@ -33,8 +33,8 @@ public abstract class BaseTest {
     }
 
     @Before
-    public void baseBefore(){
-        this.clearCookies();
+    public void beforeBase(){
+        clearCookies();
         if(!(WebDriverRunner.getWebDriver().getCurrentUrl().equalsIgnoreCase(baseUrl + "/")))
             HomePage.openHomePage();
     }
@@ -43,7 +43,7 @@ public abstract class BaseTest {
         clearCookies();
     }
 
-    private void clearCookies() {
+    protected static void clearCookies() {
         if(!(WebDriverRunner.getWebDriver().getCurrentUrl().equalsIgnoreCase("https://temp-mail.ru/"))) {
             WebDriverRunner.getWebDriver().manage().deleteAllCookies();
             WebDriverRunner.getWebDriver().manage().deleteAllCookies();

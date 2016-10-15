@@ -6,11 +6,11 @@ import ru.yandex.qatools.allure.annotations.Step;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class Cart {
+public class Cart{
 
     private String productArg;
 
-    public Cart(){
+    private Cart(){
         $("#cart").shouldBe(Condition.visible);
     }
 

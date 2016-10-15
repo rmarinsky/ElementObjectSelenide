@@ -114,8 +114,9 @@ public class User {
     }
 
     @Step
-    public void loginUserViaJS(final String login, final String password){
+    public User loginUserViaJS(final String login, final String password){
         new JSExecutor().POSTWithParams("/user/login/", String.format("{'login[username]':'%s', 'login[password]':'%s'}", login, password));
+        return this;
     }
 
     @Step

@@ -6,7 +6,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static gsmserver.Components.GeneralForm.submitForm;
+import static gsmserver.Components.BaseComponent.submitForm;
 
 public class AccountChangePassword {
 

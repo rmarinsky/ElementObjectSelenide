@@ -1,4 +1,4 @@
-package gsmserver.Components;
+package gsmserver.Components.Checkout;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;

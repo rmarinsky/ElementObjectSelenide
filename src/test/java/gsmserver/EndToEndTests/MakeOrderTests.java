@@ -1,8 +1,8 @@
 package gsmserver.EndToEndTests;
 
 import com.codeborne.selenide.SelenideElement;
-import gsmserver.Components.DeliveryService;
-import gsmserver.Components.PaymentService;
+import gsmserver.Components.Checkout.DeliveryService;
+import gsmserver.Components.Checkout.PaymentService;
 import gsmserver.Components.Product;
 import gsmserver.Components.User;
 import gsmserver.Utils.BaseTest;

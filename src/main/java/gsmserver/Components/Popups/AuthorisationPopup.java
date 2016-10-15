@@ -2,7 +2,6 @@ package gsmserver.Components.Popups;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import gsmserver.Components.GeneralForm;
 import gsmserver.Components.TopLinks;
 import gsmserver.Components.User;
 import gsmserver.Utils.CustomConditions;
@@ -10,14 +9,15 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selenide.$;
-import static gsmserver.Components.GeneralForm.submitForm;
+import static gsmserver.Components.BaseComponent.submitForm;
 import static gsmserver.Utils.CustomConditions.*;
+import static gsmserver.Utils.Random.generateRandomString;
 
-public class LoginView {
+public class AuthorisationPopup {
 
     private User user;
 
-    public LoginView(){
+    public AuthorisationPopup(){
         $("#login-view").shouldBe(Condition.visible);
         this.user = new User();
     }
@@ -40,7 +40,8 @@ public class LoginView {
         element.shouldHave(classError());
     }
 
-    public LoginView verifyLoginFormValidation(String value){
+    public AuthorisationPopup verifyLoginFormValidation(){
+        String tempValue = generateRandomString();
         this.user.login.shouldBe(Condition.empty);
         this.user.password.shouldBe(Condition.empty);
         CustomConditions.signaturesOfFieldsHaveRequiredLabel(user.login, user.password);
@@ -49,31 +50,37 @@ public class LoginView {
         $("td.buy-without-signup-message").click();
         this.shouldHaveClassError(this.user.login);
         this.shouldHaveClassError(this.user.password);
-        GeneralForm.submitForm().submitFailed();
-        this.user.fillLogin(value);
+        submitForm().submitShouldBeFailed();
+        this.user.fillLogin(tempValue);
         $("td.buy-without-signup-message").click();
         this.shouldNotHaveClassError(this.user.login);
-        this.user.fillPassword(value);
+        this.user.fillPassword(tempValue);
         $("td.buy-without-signup-message").click();
         this.shouldNotHaveClassError(this.user.password);
-        this.user.fillLogin(value);
+        this.user.fillLogin(tempValue);
         this.user.password.clear();
-        GeneralForm.submitForm().submitFailed();
+        submitForm().submitShouldBeFailed();
         shouldNotHaveClassError(this.user.login);
         this.user.password.shouldHave(classError(), cannotBeBlankTitleTip());
-        GeneralForm.submitForm().submitFailed();
-        this.user.fillPassword(value);
-        GeneralForm.submitForm().submitFailed();
+        submitForm().submitShouldBeFailed();
+        this.user.fillPassword(tempValue);
+        submitForm().submitShouldBeFailed();
         this.user.login.shouldHave(classError(), originalTitleTip("Incorrect username or password"));
         this.user.password.shouldHave(classError(), originalTitleTip("Incorrect username or password"));
-        GeneralForm.submitForm().submitFailed();
+        submitForm().submitShouldBeFailed();
         return this;
     }
 
     @Step
-    public RegistrationView openRegistrationView(){
+    public Registration openRegistrationForm(){
         $(byLinkText("Registration")).click();
-        return new RegistrationView();
+        return new Registration();
+    }
+
+    @Step
+    public ForgotPassword openForgotPasswordForm(){
+        $("[data-action-click*='forgotPassword']").click();
+        return new ForgotPassword();
     }
 
 }

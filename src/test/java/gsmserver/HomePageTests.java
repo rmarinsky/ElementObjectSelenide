@@ -14,11 +14,13 @@ import static org.junit.Assert.fail;
 
 public class HomePageTests extends BaseTest{
 
-    @Test public void bannersShouldBeVisibleTests(){
+    @Test
+    public void bannersShouldBeVisibleTests(){
         new HomePage().bannersShouldBeVisible();
     }
 
-    @Test public void testsForCategories(){
+    @Test
+    public void testsForCategories(){
         for(SelenideElement element : $$("#main-menu a.mainmenu-item-link").excludeWith(Condition.cssClass("sale"))) {
             open(element.getAttribute("href"));
             $(".promoblock").shouldBe(Condition.visible);
@@ -27,7 +29,8 @@ public class HomePageTests extends BaseTest{
         }
     }
 
-    @Test public void testsForSaleAndBenefitsPages(){
+    @Test
+    public void testsForSaleAndBenefitsPages(){
         $("td.last.sale").click();
         $$("li.promotion-item img").forEach(SelenideElement::isImage);
         open($(".header-orange-link").getAttribute("href"));
@@ -44,11 +47,13 @@ public class HomePageTests extends BaseTest{
         $(".g-recaptcha").shouldNotBe(Condition.hidden);
     }
 
-    @Test public void infoBlockHavImagesTest(){
+    @Test
+    public void infoBlockHavImagesTest(){
         new HomePage().infoBlockHaveImages();
     }
 
-    @Test public void addingToCartProductTest(){
+    @Test
+    public void addingToCartProductTest(){
         new HomePage().addToCartFirstProduct().
                 cartIconHaveCount();
     }

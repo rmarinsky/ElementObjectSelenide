@@ -22,7 +22,7 @@ public class Product {
         new JSExecutor().GETRequest(String.format("/ajax/cart/add/%s,%s", productId, count));
     }
 
-    public void addProductsToCart(Integer... productIds){
+    public void addProductsToCartViaJs(Integer... productIds){
         for(Integer id : productIds) {
             this.addProductToCartViaJs(id, 1);
         }

@@ -1,4 +1,4 @@
-package gsmserver.Components;
+package gsmserver.Components.Checkout;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -7,7 +7,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class DeliveryService {
+public class DeliveryService{
 
     @Step
     public DeliveryService chooseDeliveryServiceAndVerifyCost(final String value){

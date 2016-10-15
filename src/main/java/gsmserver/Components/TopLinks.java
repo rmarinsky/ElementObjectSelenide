@@ -1,7 +1,7 @@
 package gsmserver.Components;
 
 import com.codeborne.selenide.Condition;
-import gsmserver.Components.Popups.LoginView;
+import gsmserver.Components.Popups.AuthorisationPopup;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Selectors.byLinkText;
@@ -14,9 +14,9 @@ public class TopLinks {
     }
 
     @Step
-    public LoginView openLoginPopup(){
+    public AuthorisationPopup openLoginPopup(){
         $("a.login").shouldBe(Condition.visible).click();
-        return new LoginView();
+        return new AuthorisationPopup();
     }
 
     @Step

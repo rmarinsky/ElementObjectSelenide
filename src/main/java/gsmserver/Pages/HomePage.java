@@ -5,8 +5,10 @@ import com.codeborne.selenide.SelenideElement;
 import gsmserver.Utils.BaseTest;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selectors.byName;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 import static gsmserver.Components.Product.addToCartButtons;
 import static gsmserver.Components.Product.inputQuantity;
 
@@ -20,7 +22,7 @@ public final class HomePage extends BaseTest{
 
     @Step
     public static HomePage openHomePage(){
-        open("");
+        open(baseUrl);
         return new HomePage();
     }
 
@@ -29,10 +31,6 @@ public final class HomePage extends BaseTest{
         $("div.side-banner.left-banner").shouldBe(Condition.visible);
         $("div.side-banner.right-banner").shouldBe(Condition.visible);
         return this;
-    }
-
-    public void categoryPagesCheck(){
-
     }
 
     @Step
