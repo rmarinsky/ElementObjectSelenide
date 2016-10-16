@@ -5,7 +5,6 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import gsmserver.Pages.HomePage;
 import gsmserver.Utils.Report.CustomWatcher;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -40,10 +39,10 @@ public abstract class BaseTest {
         if(!(WebDriverRunner.getWebDriver().getCurrentUrl().equalsIgnoreCase(baseUrl + "/")))
             HomePage.openHomePage();
     }
-    @After
+    /*@After
     public void baseAfter(){
         clearCookies();
-    }
+    }*/
 
     protected static void clearCookies() {
         if(!(WebDriverRunner.getWebDriver().getCurrentUrl().equalsIgnoreCase("https://temp-mail.ru/"))) {

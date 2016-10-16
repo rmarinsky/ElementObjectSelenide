@@ -5,7 +5,6 @@ import gsmserver.Components.Account.AccountChangePassword;
 import gsmserver.Components.Account.AccountPersonalData;
 import gsmserver.Components.Account.AccountSubscriptions;
 import gsmserver.Components.TopLinks;
-import gsmserver.Pages.HomePage;
 import gsmserver.Utils.BaseTest;
 import gsmserver.Utils.Random;
 import org.junit.BeforeClass;
@@ -24,7 +23,8 @@ public class AccountRegisterTest extends BaseTest {
 
     @Test
     public void registerNewUserAndChangePassword(){
-        HomePage.openHomePage();
+        clearCookies();
+        //HomePage.openHomePage();
         new TopLinks().openLoginPopup().openRegistrationForm().
                 registerUser(super.defaultTestValue, getTempEMail(), getTempEMail());
         TempMail.openTempMail().

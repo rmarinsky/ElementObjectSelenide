@@ -47,7 +47,7 @@ public class ContactInformation {
             this.user.chooseCountry(country);
             signaturesOfFieldsHaveRequiredLabel(this.user.customRegion);
             this.user.customRegion.click();
-            $("#state_id > option").shouldBe(Condition.visible);
+            this.user.customRegion.$(".chosen-drop").shouldBe(Condition.visible);
         }
         return this;
     }
