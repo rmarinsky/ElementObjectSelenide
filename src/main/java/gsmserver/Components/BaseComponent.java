@@ -19,6 +19,11 @@ public class BaseComponent{
     }
 
     @Step
+    public static void submitStepCheckout(){
+        $(".styled-link-checkout").click();
+    }
+
+    @Step
     public void submitShouldBeSucceeded(){
         formSummary.shouldHave(CustomConditions.classSuccess(), visible);
     }

@@ -17,7 +17,7 @@ public class ProductList {
         this.searchedPhrase = searchedPhrase;
     }
 
-    private final  SelenideElement searchTitle = $(".search-title-highlight");
+    private final SelenideElement searchTitle = $(".search-title-highlight");
 
     @Step
     public ProductList openProductListPage(){
@@ -25,15 +25,23 @@ public class ProductList {
         return new ProductList();
     }
 
-
     /**
      * Search result page should have searched phrase in a title
      */
     @Step
-    public void searchResultShouldHasSearchedPhrase(){
+    public ProductList searchResultShouldHasSearchedPhrase(){
         searchTitle.shouldHave(Condition.text(searchedPhrase));
+        return this;
     }
 
+    @Step
+    public void shouldHaveProduct(int id){
+        Product.findProduct(id, "li").shouldBe(Condition.visible);
+    }
 
+    @Step
+    public void shouldNotHaveProduct(int id){
+        Product.findProduct(id, "li").shouldNotBe(Condition.visible);
+    }
 
 }

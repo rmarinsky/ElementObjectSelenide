@@ -30,6 +30,8 @@ public abstract class BaseTest {
     @BeforeClass
     public static void baseBeforeClass(){
         Configuration.baseUrl = defaultBaseUrl;
+        if(!(WebDriverRunner.getWebDriver().getCurrentUrl().equalsIgnoreCase(baseUrl + "/")))
+            HomePage.openHomePage();
     }
 
     @Before
