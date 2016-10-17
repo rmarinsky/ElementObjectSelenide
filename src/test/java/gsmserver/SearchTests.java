@@ -1,6 +1,5 @@
 package gsmserver;
 
-
 import gsmserver.Components.Search;
 import gsmserver.Utils.BaseTest;
 import org.junit.Test;

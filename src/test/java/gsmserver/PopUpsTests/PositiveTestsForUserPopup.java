@@ -27,5 +27,4 @@ public class PositiveTestsForUserPopup extends BaseTest {
                 recoveryPasswordForUser(defaultEmail);
     }
 
-
 }

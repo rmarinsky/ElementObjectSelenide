@@ -25,16 +25,16 @@ public class PersonalDataTests extends BaseTest{
     public void verifySavingPersonalDataTest() {
         String tempTestVal = Random.generateRandomString();
         User user = new User();
-        user.login.is(Condition.readonly);
+        user.fieldLogin.is(Condition.readonly);
         user.fillFirstName(tempTestVal);
         user.fillLastName(tempTestVal);
         user.birthday.is(Condition.readonly);
         user.fillCity(tempTestVal);
         BaseComponent.submitForm().submitShouldBeSucceeded();
         refresh();
-        user.firstName.shouldHave(Condition.value(tempTestVal));
-        user.lastName.shouldHave(Condition.value(tempTestVal));
-        user.inputCity.shouldHave(Condition.value(tempTestVal));
+        user.fieldFirstName.shouldHave(Condition.value(tempTestVal));
+        user.fieldLastName.shouldHave(Condition.value(tempTestVal));
+        user.fieldCity.shouldHave(Condition.value(tempTestVal));
     }
 
     @Test

@@ -18,8 +18,8 @@ public class AuthorisationPopup {
     private User user;
 
     public AuthorisationPopup(){
-        $("#login-view").shouldBe(Condition.visible);
-        this.user = new User();
+        $("#selctorLogin-view").shouldBe(Condition.visible);
+        user = new User();
     }
 
     @Step
@@ -42,31 +42,31 @@ public class AuthorisationPopup {
 
     public AuthorisationPopup verifyLoginFormValidation(){
         String tempValue = generateRandomString();
-        this.user.login.shouldBe(Condition.empty);
-        this.user.password.shouldBe(Condition.empty);
-        CustomConditions.signaturesOfFieldsHaveRequiredLabel(user.login, user.password);
-        this.user.login.click();
-        this.user.password.click();
+        user.fieldLogin.shouldBe(Condition.empty);
+        user.fieldPassword.shouldBe(Condition.empty);
+        CustomConditions.signaturesOfFieldsHaveRequiredLabel(user.fieldLogin, user.fieldPassword);
+        user.fieldLogin.click();
+        user.fieldPassword.click();
         $("td.buy-without-signup-message").click();
-        this.shouldHaveClassError(this.user.login);
-        this.shouldHaveClassError(this.user.password);
+        this.shouldHaveClassError(user.fieldLogin);
+        this.shouldHaveClassError(user.fieldPassword);
         submitForm().submitShouldBeFailed();
-        this.user.fillLogin(tempValue);
+        user.fillLogin(tempValue);
         $("td.buy-without-signup-message").click();
-        this.shouldNotHaveClassError(this.user.login);
-        this.user.fillPassword(tempValue);
+        this.shouldNotHaveClassError(user.fieldLogin);
+        user.fillPassword(tempValue);
         $("td.buy-without-signup-message").click();
-        this.shouldNotHaveClassError(this.user.password);
-        this.user.fillLogin(tempValue);
-        this.user.password.clear();
+        this.shouldNotHaveClassError(user.fieldPassword);
+        user.fillLogin(tempValue);
+        user.fieldPassword.clear();
         submitForm().submitShouldBeFailed();
-        shouldNotHaveClassError(this.user.login);
-        this.user.password.shouldHave(classError(), cannotBeBlankTitleTip());
+        shouldNotHaveClassError(user.fieldLogin);
+        user.fieldPassword.shouldHave(classError(), cannotBeBlankTitleTip());
         submitForm().submitShouldBeFailed();
-        this.user.fillPassword(tempValue);
+        user.fillPassword(tempValue);
         submitForm().submitShouldBeFailed();
-        this.user.login.shouldHave(classError(), originalTitleTip("Incorrect username or password"));
-        this.user.password.shouldHave(classError(), originalTitleTip("Incorrect username or password"));
+        user.fieldLogin.shouldHave(classError(), originalTitleTip("Incorrect username or password"));
+        user.fieldPassword.shouldHave(classError(), originalTitleTip("Incorrect username or password"));
         submitForm().submitShouldBeFailed();
         return this;
     }

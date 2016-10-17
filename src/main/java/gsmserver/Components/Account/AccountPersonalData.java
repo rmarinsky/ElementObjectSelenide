@@ -26,17 +26,17 @@ public class AccountPersonalData {
 
     @Step
     public void loginEmailFirstNameShouldBe(final String loginValue, final String emailValue, final String firstNameValue){
-        this.user.login.has(Condition.value(loginValue));
-        this.user.email.has(Condition.value(emailValue));
-        this.user.firstName.has(Condition.value(firstNameValue));
+        user.fieldLogin.has(Condition.value(loginValue));
+        user.fieldEmail.has(Condition.value(emailValue));
+        user.fieldFirstName.has(Condition.value(firstNameValue));
     }
 
     @Description("Check that elements are required: First name, Country, Email. Check that elements are NOT required: Last name, Birthday, Region, City, Phone")
     @Step
     public void verifyVisibleOfRequiredLabelCom(){
-        CustomConditions.signaturesOfFieldsHaveRequiredLabel(this.user.firstName, this.user.customCountry, this.user.email);
-        CustomConditions.signaturesOfFieldsHaveNoRequiredLabel(this.user.lastName, this.user.birthday,
-                this.user.customRegion, this.user.inputCity, $("div.styled-phone-input"));
+        CustomConditions.signaturesOfFieldsHaveRequiredLabel(user.fieldFirstName, user.customCountry, user.fieldEmail);
+        CustomConditions.signaturesOfFieldsHaveNoRequiredLabel(user.fieldLastName, user.birthday,
+                user.customRegion, user.fieldCity, $("div.styled-phone-input"));
     }
 
 }

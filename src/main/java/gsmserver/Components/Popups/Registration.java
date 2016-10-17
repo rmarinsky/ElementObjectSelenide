@@ -23,7 +23,7 @@ public class Registration{
 
     @Step
     public void registerUser(final String firstNameValue, final String loginValue, final String emailValue){
-        this.user.fillFirstName(firstNameValue).
+        user.fillFirstName(firstNameValue).
                 fillLogin(loginValue).
                 fillEmail(emailValue);
         BaseComponent.submitForm();
@@ -32,15 +32,15 @@ public class Registration{
 
     @Step
     private Registration clearForm(){
-        this.user.firstName.clear();
-        this.user.login.clear();
-        this.user.email.clear();
+        user.fieldFirstName.clear();
+        user.fieldLogin.clear();
+        user.fieldEmail.clear();
         return this;
     }
 
     @Step
     public Registration verifyVisibleOfRequiredLabelsInRegistrationForm(){
-        signaturesOfFieldsHaveRequiredLabel(this.user.login, this.user.email);
+        signaturesOfFieldsHaveRequiredLabel(user.fieldLogin, user.fieldEmail);
         return this;
     }
 
@@ -49,54 +49,54 @@ public class Registration{
     public Registration verifyRegistrationFormValidationWithEmptyForm(){
         this.clearForm();
         BaseComponent.formSummary.shouldNotBe(Condition.visible);
-        this.user.firstName.click();
-        this.user.login.click();
-        this.user.email.click();
-        this.user.firstName.click();
-        this.user.firstName.shouldNotHave(CustomConditions.classError());
-        this.user.login.shouldHave(CustomConditions.classError());
-        this.user.email.shouldHave(CustomConditions.classError());
+        user.fieldFirstName.click();
+        user.fieldLogin.click();
+        user.fieldEmail.click();
+        user.fieldFirstName.click();
+        user.fieldFirstName.shouldNotHave(CustomConditions.classError());
+        user.fieldLogin.shouldHave(CustomConditions.classError());
+        user.fieldEmail.shouldHave(CustomConditions.classError());
         BaseComponent.submitForm().submitShouldBeFailed();
-        this.user.login.shouldHave(CustomConditions.classError(), CustomConditions.cannotBeBlankTitleTip());
-        this.user.email.shouldHave(CustomConditions.classError(), CustomConditions.cannotBeBlankTitleTip());
+        user.fieldLogin.shouldHave(CustomConditions.classError(), CustomConditions.cannotBeBlankTitleTip());
+        user.fieldEmail.shouldHave(CustomConditions.classError(), CustomConditions.cannotBeBlankTitleTip());
         $("label.styled-checkbox.user-agreement").click();
         $("button[type='submit']").shouldHave(Condition.attribute("disabled"));
-        this.user.fillLogin(Random.generateRandomString());
-        this.user.email.sendKeys(Random.generateRandomEmail());
-        this.user.firstName.click();
-        this.user.login.shouldNotHave(CustomConditions.classError());
-        this.user.email.shouldNotHave(CustomConditions.classError());
+        user.fillLogin(Random.generateRandomString());
+        user.fieldEmail.sendKeys(Random.generateRandomEmail());
+        user.fieldFirstName.click();
+        user.fieldLogin.shouldNotHave(CustomConditions.classError());
+        user.fieldEmail.shouldNotHave(CustomConditions.classError());
         $("label.styled-checkbox.user-agreement").click();
         $("button[type='submit']").shouldNotHave(Condition.attribute("disabled"));
         return this;
     }
 
-    @Title("Verify validation the form \"Registration\" with random fields in form, but login should be is already registered")
+    @Title("Verify validation the form \"Registration\" with random fields in form, but selctorLogin should be is already registered")
     @Step
     public Registration verifyRegistrationFormValidationWithSomeValues(){
         this.clearForm();
-        this.user.fillLogin("t");
-        this.user.firstName.click();
-        this.user.login.shouldHave(CustomConditions.classError());
-        this.user.fillLogin("ttt");
-        this.user.firstName.click();
-        this.user.login.shouldNotHave(CustomConditions.classError());
+        user.fillLogin("t");
+        user.fieldFirstName.click();
+        user.fieldLogin.shouldHave(CustomConditions.classError());
+        user.fillLogin("ttt");
+        user.fieldFirstName.click();
+        user.fieldLogin.shouldNotHave(CustomConditions.classError());
         this.clearForm();
-        this.user.fillLogin(defaultEmail);
-        this.user.fillEmail(Random.generateRandomString());
-        this.user.firstName.click();
-        this.user.email.shouldHave(CustomConditions.classError());
+        user.fillLogin(defaultEmail);
+        user.fillEmail(Random.generateRandomString());
+        user.fieldFirstName.click();
+        user.fieldEmail.shouldHave(CustomConditions.classError());
         BaseComponent.submitForm().submitShouldBeFailed();
-        this.user.email.sendKeys("@");
+        user.fieldEmail.sendKeys("@");
         BaseComponent.submitForm().submitShouldBeFailed();
-        this.user.email.shouldHave(CustomConditions.classError());
-        this.user.email.sendKeys(Random.generateRandomString());
+        user.fieldEmail.shouldHave(CustomConditions.classError());
+        user.fieldEmail.sendKeys(Random.generateRandomString());
         BaseComponent.submitForm().submitShouldBeFailed();
-        this.user.email.shouldHave(CustomConditions.classError());
-        this.user.email.sendKeys(".com");
+        user.fieldEmail.shouldHave(CustomConditions.classError());
+        user.fieldEmail.sendKeys(".com");
         BaseComponent.submitForm().submitShouldBeFailed();
-        this.user.email.shouldNotHave(CustomConditions.classError());
-        this.user.login.shouldHave(CustomConditions.classError().because("Login \"" + defaultEmail + "\" is already registered"));
+        user.fieldEmail.shouldNotHave(CustomConditions.classError());
+        user.fieldLogin.shouldHave(CustomConditions.classError().because("Login \"" + defaultEmail + "\" is already registered"));
         return this;
     }
 

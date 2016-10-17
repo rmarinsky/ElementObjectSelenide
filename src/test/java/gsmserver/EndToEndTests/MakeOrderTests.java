@@ -1,6 +1,7 @@
 package gsmserver.EndToEndTests;
 
 import com.codeborne.selenide.SelenideElement;
+import gsmserver.Components.Checkout.ContactInformation;
 import gsmserver.Components.Checkout.DeliveryService;
 import gsmserver.Components.Checkout.PaymentService;
 import gsmserver.Components.Product;
@@ -12,7 +13,6 @@ import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Title;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 import static gsmserver.Utils.Random.generateRandomEmail;
 import static gsmserver.Utils.Random.generateRandomString;
 
@@ -21,11 +21,11 @@ public class MakeOrderTests extends BaseTest{
 
     @Before public void beforeMakeOrder(){
         new Product().addProductToCartViaJs(834632, 1);
-        open("/checkout/");
+        ContactInformation.openCheckoutPage();
     }
 
     @Title("Make simple order")
-    @Test public void makeOrder(){
+    @Test public void makeOrderOnComSite(){
         String country = "Sweden";
         String skrillPaymentService = "2032449552";
         new User().fillFirstName(generateRandomString("firstName")).

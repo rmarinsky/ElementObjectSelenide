@@ -22,7 +22,7 @@ public class ForgotPassword{
     }
 
     public void verifyForgotPasswordValidation(){
-        SelenideElement fieldEmail = this.user.email;
+        SelenideElement fieldEmail = user.fieldEmail;
         signaturesOfFieldsHaveRequiredLabel(fieldEmail);
         fieldEmail.clear();
         fieldEmail.click();
@@ -55,7 +55,7 @@ public class ForgotPassword{
 
     @Step
     public void recoveryPasswordForUser(String value){
-        SelenideElement fieldEmail = this.user.email;
+        SelenideElement fieldEmail = user.fieldEmail;
         fieldEmail.clear();
         fieldEmail.setValue(value);
         BaseComponent.submitForm();

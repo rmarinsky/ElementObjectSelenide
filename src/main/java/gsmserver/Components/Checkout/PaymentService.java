@@ -2,15 +2,11 @@ package gsmserver.Components.Checkout;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 import ru.yandex.qatools.allure.annotations.Step;
 
-import static com.codeborne.selenide.Selectors.byCssSelector;
 import static com.codeborne.selenide.Selenide.$;
 
 public class PaymentService {
-
-    private By paymentServiceAfterChoose = byCssSelector("div[data-sm-name='checkout.payment-service-");
 
     /**
      * Give an id of payment service. Find locators [data-sm-role='checkout.payment-select'] and get part of [data-sm-target='checkout.payment-service-***]

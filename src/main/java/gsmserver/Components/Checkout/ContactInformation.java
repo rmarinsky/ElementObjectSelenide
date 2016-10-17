@@ -14,7 +14,7 @@ public class ContactInformation {
 
     public ContactInformation(){
         $("[data-sm-role='checkout.container']").shouldBe(Condition.visible);
-        this.user = new User();
+        user = new User();
     }
 
     @Step
@@ -26,8 +26,8 @@ public class ContactInformation {
     @Step
     public ContactInformation verifyCountriesWithRequiredTaxId(String... countries) {
         for(String country : countries) {
-            this.user.chooseCountry(country);
-            signaturesOfFieldsHaveRequiredLabel(this.user.taxId);
+            user.chooseCountry(country);
+            signaturesOfFieldsHaveRequiredLabel(user.fieldTaxId);
         }
         return this;
     }
@@ -35,8 +35,8 @@ public class ContactInformation {
     @Step
     public ContactInformation verifyCountriesWithRequiredMiddleName(String... countries){
         for(String country : countries) {
-            this.user.chooseCountry(country);
-            signaturesOfFieldsHaveRequiredLabel(this.user.middleName);
+            user.chooseCountry(country);
+            signaturesOfFieldsHaveRequiredLabel($(user.fieldMiddleName));
         }
         return this;
     }
@@ -44,10 +44,10 @@ public class ContactInformation {
     @Step
     public ContactInformation verifyCountriesWithRequiredRegion(String... countries){
         for(String country : countries) {
-            this.user.chooseCountry(country);
-            signaturesOfFieldsHaveRequiredLabel(this.user.customRegion);
-            this.user.customRegion.click();
-            this.user.customRegion.$(".chosen-drop").shouldBe(Condition.visible);
+            user.chooseCountry(country);
+            signaturesOfFieldsHaveRequiredLabel(user.customRegion);
+            user.customRegion.click();
+            user.customRegion.$(".chosen-drop").shouldBe(Condition.visible);
         }
         return this;
     }
@@ -71,7 +71,7 @@ public class ContactInformation {
 
     @Step
     public User openEditAddressForm(){
-        if($("[data-sm-role='checkout.edit']").is(Condition.visible) && this.user.firstName.is(Condition.hidden))
+        if($("[data-sm-role='checkout.edit']").is(Condition.visible) && user.fieldFirstName.is(Condition.hidden))
             $("[data-sm-role='checkout.edit']").click();
         return new User(true);
     }
