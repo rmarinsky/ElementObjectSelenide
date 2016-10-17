@@ -15,7 +15,7 @@ public class TopLinks {
 
     @Step
     public AuthorisationPopup openLoginPopup(){
-        $("a.selctorLogin").shouldBe(Condition.visible).click();
+        $("a.login").shouldBe(Condition.visible).click();
         return new AuthorisationPopup();
     }
 
@@ -23,7 +23,7 @@ public class TopLinks {
     public TopLinks logoutUser(){
         $("a.account").click();
         $("ul.submenu.shadow.account-dropdown").$(byLinkText("Log out")).click();
-        $("a.selctorLogin").shouldBe(Condition.visible);
+        $("a.login").shouldBe(Condition.visible);
         return this;
     }
 

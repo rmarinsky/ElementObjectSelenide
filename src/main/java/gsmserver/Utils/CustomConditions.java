@@ -1,8 +1,10 @@
 package gsmserver.Utils;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 import ru.yandex.qatools.allure.annotations.Step;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public final class CustomConditions {
 
@@ -30,15 +32,15 @@ public final class CustomConditions {
     }
 
     @Step
-    public static void signaturesOfFieldsHaveRequiredLabel(SelenideElement... elements){
-        for(SelenideElement element : elements) {
-            element.parent().has(labelRequired());
+    public static void signaturesOfFieldsHaveRequiredLabel(By... bys){
+        for(By by : bys) {
+            $(by).parent().has(labelRequired());
         }
     }
     @Step
-    public static void signaturesOfFieldsHaveNoRequiredLabel(SelenideElement... elements){
-        for(SelenideElement element : elements) {
-            element.parent().shouldNotHave(labelRequired());
+    public static void signaturesOfFieldsHaveNoRequiredLabel(By... bys){
+        for(By by : bys) {
+            $(by).parent().shouldNotHave(labelRequired());
         }
     }
 

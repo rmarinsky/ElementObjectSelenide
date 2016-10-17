@@ -9,6 +9,7 @@ import gsmserver.Utils.Random;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.refresh;
 import static gsmserver.Utils.DefaultData.defaultEmail;
 import static gsmserver.Utils.DefaultData.defaultPassword;
@@ -25,16 +26,16 @@ public class PersonalDataTests extends BaseTest{
     public void verifySavingPersonalDataTest() {
         String tempTestVal = Random.generateRandomString();
         User user = new User();
-        user.fieldLogin.is(Condition.readonly);
+        $(user.fieldLogin).is(Condition.readonly);
         user.fillFirstName(tempTestVal);
         user.fillLastName(tempTestVal);
-        user.birthday.is(Condition.readonly);
+        $(user.customBirthday).is(Condition.readonly);
         user.fillCity(tempTestVal);
         BaseComponent.submitForm().submitShouldBeSucceeded();
         refresh();
-        user.fieldFirstName.shouldHave(Condition.value(tempTestVal));
-        user.fieldLastName.shouldHave(Condition.value(tempTestVal));
-        user.fieldCity.shouldHave(Condition.value(tempTestVal));
+        $(user.fieldFirstName).shouldHave(Condition.value(tempTestVal));
+        $(user.fieldLastName).shouldHave(Condition.value(tempTestVal));
+        $(user.fieldCity).shouldHave(Condition.value(tempTestVal));
     }
 
     @Test
@@ -47,15 +48,15 @@ public class PersonalDataTests extends BaseTest{
     public void verifySelectingCountryAndStateTest(){
         User user = new User();
         user.chooseCountry("Turkey");
-        user.customCountry.$("em").shouldHave(Condition.text("Turkey"));
+        user.shouldHaveText(user.customCountry,"Turkey");
         BaseComponent.submitForm().submitShouldBeSucceeded();
-        user.customRegion.shouldNotBe(Condition.exist);
+        $(user.customRegion).shouldNotBe(Condition.exist);
         user.chooseCountry("Spain").chooseRegion("Aragon");
-        user.customRegion.$("em").shouldHave(Condition.text("Aragon"));
+        user.shouldHaveText(user.customRegion,"Aragon");
         BaseComponent.submitForm().submitShouldBeSucceeded();
         refresh();
-        user.customCountry.$("em").shouldHave(Condition.text("Spain"));
-        user.customRegion.$("em").shouldHave(Condition.text("Aragon"));
+        user.shouldHaveText(user.customCountry,"Spain");
+        user.shouldHaveText(user.customRegion, "Aragon");
     }
 
 }

@@ -1,6 +1,6 @@
 package gsmserver.Components;
 
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.Condition;
 import gsmserver.Utils.JSExecutor;
 import org.openqa.selenium.By;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -16,45 +16,25 @@ public class User {
 
     private By componentElement = byCssSelector("form[name='address']");
 
-    private final By byLogin = byCssSelector("input[name*='username']"),
-            byPassword = byCssSelector("input[name*='password']"),
-            byPasswordConfirm = byCssSelector("input[name*='password_confirm']"),
-            byFirstName = byCssSelector("input[name*='firstName']"),
-            byEmail = byCssSelector("input[name*='email']"),
-            byLastName = byCssSelector("input[name*='lastName']"),
-            byCity = byCssSelector("input#city"),
-            byMiddleName = byCssSelector("input[name*='middleName']"),
-            byCustomCountry = byCssSelector("#country_id_chosen"),
-            byCustomRegion = byCssSelector("#state_id_chosen"),
-            byCustomCity = byCssSelector("#city_id_chosen"),
-            byAddress = byCssSelector("input[name*='[address]']"), //because of element have name = "address[address]"
-            byPhoneCountries = byCssSelector("a.styled-phone-dropdown-button"),
-            byPhoneNumber = byCssSelector(".styled-phone-edit > input"),
-            byBirthday = byCssSelector("#birthday"),
-            byZip = byCssSelector("input[name*='zip'"),
-            byTaxId = byCssSelector("input[name*='taxId']");
-
-    public final SelenideElement
-            fieldLogin = $(byLogin),
-            fieldPassword = $(byPassword),
-            fieldPasswordConfirm = $(byPasswordConfirm),
-            fieldFirstName = $(byFirstName),
-            fieldEmail = $(byEmail),
-            fieldLastName = $(byLastName),
-            fieldMiddleName = $(byCity),
-            customCountry = $(byMiddleName),
-            customRegion = $(byCustomCountry),
-            customCity = $(byCustomRegion),
-            fieldCity = $(byCustomCity),
-            fieldAddress = $(byAddress), //because of element have name = "address[address]"
-            customPhoneCountries = $(byPhoneCountries),
-            fieldPhoneNumber = $(byPhoneNumber),
-            birthday = $(byBirthday),
-            fieldZip = $(byZip),
-            fieldTaxId = $(byTaxId);
+    public final By fieldLogin = byCssSelector("input[name*='username']"),
+            fieldPassword = byCssSelector("input[name*='password']"),
+            fieldPasswordConfirm = byCssSelector("input[name*='password_confirm']"),
+            fieldFirstName = byCssSelector("input[name*='firstName']"),
+            fieldEmail = byCssSelector("input[name*='email']"),
+            fieldLastName = byCssSelector("input[name*='lastName']"),
+            fieldCity = byCssSelector("input#city"),
+            fieldMiddleName = byCssSelector("input[name*='middleName']"),
+            customCountry = byCssSelector("#country_id_chosen"),
+            customRegion = byCssSelector("#state_id_chosen"),
+            customCity = byCssSelector("#city_id_chosen"),
+            fieldAddress = byCssSelector("input[name*='[address]']"), //because of element have name = "address[address]"
+            customPhoneCountries = byCssSelector("a.styled-phone-dropdown-button"),
+            fieldPhoneNumber = byCssSelector(".styled-phone-edit > input"),
+            customBirthday = byCssSelector("#birthday"),
+            fieldZip = byCssSelector("input[name*='zip'"),
+            fieldTaxId = byCssSelector("input[name*='taxId']");
 
     public User(){
-
     }
 
     public User(boolean useComponent){
@@ -63,28 +43,28 @@ public class User {
 
     @Step
     public User fillLogin(final String value){
-        this.fieldLogin.sendKeys(value);
+        $(this.fieldLogin).sendKeys(value);
         return this;
     }
 
     @Step
     public User fillPassword(final String value){
-        this.fieldPassword.setValue(value);
+        $(this.fieldPassword).sendKeys(value);
         return this;
     }
 
     @Step
     public User fillConfirmPassword(final String value){
-        this.fieldPasswordConfirm.setValue(value);
+        $(this.fieldPasswordConfirm).sendKeys(value);
         return this;
     }
 
     @Step
     public User fillFirstName(final String value){
         if(useComponent){
-            $(componentElement).$(this.byFirstName).setValue(value);
+            $(componentElement).$(this.fieldFirstName).setValue(value);
         } else {
-            this.fieldFirstName.setValue(value);
+            $(this.fieldFirstName).setValue(value);
         }
         return this;
     }
@@ -92,9 +72,9 @@ public class User {
     @Step
     public User fillLastName(final String value) {
         if(useComponent){
-            $(componentElement).$(this.byLastName).setValue(value);
+            $(componentElement).$(this.fieldLastName).setValue(value);
         } else {
-            this.fieldLastName.setValue(value);
+            $(this.fieldLastName).setValue(value);
         }
         return this;
     }
@@ -102,9 +82,9 @@ public class User {
     @Step
     public User fillMiddleName(final String value) {
             if(useComponent){
-                $(componentElement).$(this.byMiddleName).setValue(value);
+                $(componentElement).$(this.fieldMiddleName).setValue(value);
             } else {
-                this.fieldMiddleName.setValue(value);
+                $(this.fieldMiddleName).setValue(value);
             }
         return this;
     }
@@ -112,9 +92,9 @@ public class User {
     @Step
     public User fillEmail(final String value) {
         if(useComponent){
-            $(componentElement).$(this.byEmail).setValue(value);
+            $(componentElement).$(this.fieldEmail).setValue(value);
         } else {
-            this.fieldEmail.setValue(value);
+            $(this.fieldEmail).setValue(value);
         }
         return this;
     }
@@ -122,9 +102,9 @@ public class User {
     @Step
     public User fillAddress(final String value) {
         if(useComponent){
-            $(componentElement).$(this.byAddress).setValue(value);
+            $(componentElement).$(this.fieldAddress).setValue(value);
         } else {
-            this.fieldAddress.setValue(value);
+            $(this.fieldAddress).setValue(value);
         }
         return this;
     }
@@ -132,16 +112,16 @@ public class User {
 
     @Step
     public User fillPhoneByCountry(final String country, final String phone){
-        this.customPhoneCountries.click();
+        $(this.customPhoneCountries).click();
         $(String.format("b[data-hint='%s']", country)).scrollTo().click();
-        this.fieldPhoneNumber.setValue(phone);
+        $(this.fieldPhoneNumber).setValue(phone);
         return this;
     }
 
     @Step
     public User chooseCountry(final String value){
         $("h1").scrollTo();
-        this.customCountry.click();
+        $(this.customCountry).click();
         this.selectItem(value);
         return this;
     }
@@ -149,7 +129,7 @@ public class User {
     @Step
     public User chooseRegion(final String value){
         $("h1").scrollTo();
-        this.customRegion.click();
+        $(this.customRegion).click();
         this.selectItem(value);
         return this;
     }
@@ -157,7 +137,7 @@ public class User {
     @Step
     public User chooseCity(final String value){
         $("h1").scrollTo();
-        this.customCity.click();
+        $(this.customCity).click();
         this.selectItem(value);
         return this;
     }
@@ -165,9 +145,9 @@ public class User {
     @Step
     public User fillCity(final String value){
         if(useComponent){
-            $(componentElement).$(this.byCity).setValue(value);
+            $(componentElement).$(this.fieldCity).setValue(value);
         } else {
-            this.fieldCity.setValue(value);
+            $(this.fieldCity).setValue(value);
         }
         return this;
     }
@@ -178,7 +158,7 @@ public class User {
 
     @Step
     public User loginUserViaJS(final String login, final String password){
-        new JSExecutor().POSTWithParams("/user/selctorLogin/", String.format("{'selctorLogin[username]':'%s', 'selctorLogin[password]':'%s'}", login, password));
+        new JSExecutor().POSTWithParams("/user/login/", String.format("{'login[username]':'%s', 'login[password]':'%s'}", login, password));
         return this;
     }
 
@@ -194,6 +174,11 @@ public class User {
         open("/account/data/");
         String csrf = $("[name='YII_CSRF_TOKEN']").getValue();
         new JSExecutor().POSTWithParams("/account/data/", "{'account[countryId]':'724', 'account[stateId]':'-1', 'YII_CSRF_TOKEN':'"+csrf+"'}");
+    }
+
+    @Step
+    public void shouldHaveText(By by, String text){
+        $(by).$("em").shouldHave(Condition.text(text));
     }
 
 }

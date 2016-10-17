@@ -6,6 +6,7 @@ import gsmserver.Utils.CustomConditions;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import static com.codeborne.selenide.Selectors.byCssSelector;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -26,17 +27,17 @@ public class AccountPersonalData {
 
     @Step
     public void loginEmailFirstNameShouldBe(final String loginValue, final String emailValue, final String firstNameValue){
-        user.fieldLogin.has(Condition.value(loginValue));
-        user.fieldEmail.has(Condition.value(emailValue));
-        user.fieldFirstName.has(Condition.value(firstNameValue));
+        $(user.fieldLogin).has(Condition.value(loginValue));
+        $(user.fieldEmail).has(Condition.value(emailValue));
+        $(user.fieldFirstName).has(Condition.value(firstNameValue));
     }
 
     @Description("Check that elements are required: First name, Country, Email. Check that elements are NOT required: Last name, Birthday, Region, City, Phone")
     @Step
     public void verifyVisibleOfRequiredLabelCom(){
         CustomConditions.signaturesOfFieldsHaveRequiredLabel(user.fieldFirstName, user.customCountry, user.fieldEmail);
-        CustomConditions.signaturesOfFieldsHaveNoRequiredLabel(user.fieldLastName, user.birthday,
-                user.customRegion, user.fieldCity, $("div.styled-phone-input"));
+        CustomConditions.signaturesOfFieldsHaveNoRequiredLabel(user.fieldLastName, user.customBirthday,
+                user.customRegion, user.fieldCity, byCssSelector("div.styled-phone-input"));
     }
 
 }

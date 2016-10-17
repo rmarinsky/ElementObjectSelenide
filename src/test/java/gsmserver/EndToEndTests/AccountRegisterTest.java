@@ -24,7 +24,6 @@ public class AccountRegisterTest extends BaseTest {
     @Test
     public void registerNewUserAndChangePassword(){
         clearCookies();
-        //HomePage.openHomePage();
         new TopLinks().openLoginPopup().openRegistrationForm().
                 registerUser(super.defaultTestValue, getTempEMail(), getTempEMail());
         TempMail.openTempMail().

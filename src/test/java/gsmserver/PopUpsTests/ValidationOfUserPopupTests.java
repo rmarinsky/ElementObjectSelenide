@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 
-@Description("This is a complex verifications for selctorLogin, forgot password and registration forms in main popup")
+@Description("This is a complex verifications for login, forgot password and registration forms in main popup")
 public class ValidationOfUserPopupTests extends BaseTest{
 
     @Before

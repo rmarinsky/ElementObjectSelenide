@@ -36,7 +36,7 @@ public class ContactInformation {
     public ContactInformation verifyCountriesWithRequiredMiddleName(String... countries){
         for(String country : countries) {
             user.chooseCountry(country);
-            signaturesOfFieldsHaveRequiredLabel($(user.fieldMiddleName));
+            signaturesOfFieldsHaveRequiredLabel(user.fieldMiddleName);
         }
         return this;
     }
@@ -46,8 +46,8 @@ public class ContactInformation {
         for(String country : countries) {
             user.chooseCountry(country);
             signaturesOfFieldsHaveRequiredLabel(user.customRegion);
-            user.customRegion.click();
-            user.customRegion.$(".chosen-drop").shouldBe(Condition.visible);
+            $(user.customRegion).click();
+            $(user.customRegion).$(".chosen-drop").shouldBe(Condition.visible);
         }
         return this;
     }
@@ -71,7 +71,7 @@ public class ContactInformation {
 
     @Step
     public User openEditAddressForm(){
-        if($("[data-sm-role='checkout.edit']").is(Condition.visible) && user.fieldFirstName.is(Condition.hidden))
+        if($("[data-sm-role='checkout.edit']").is(Condition.visible) && $(user.fieldFirstName).is(Condition.hidden))
             $("[data-sm-role='checkout.edit']").click();
         return new User(true);
     }
