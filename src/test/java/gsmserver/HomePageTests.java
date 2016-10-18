@@ -20,8 +20,8 @@ public class HomePageTests extends BaseTest{
     }
 
     @Test
-    public void testsForCategories(){
-        for(SelenideElement element : $$("#main-menu a.mainmenu-item-link").excludeWith(Condition.cssClass("sale"))) {
+    public void categoriesPagesTest(){
+        for(SelenideElement element : $$("[class^='main-menu-item'] > a")) {
             open(element.getAttribute("href"));
             $(".promoblock").shouldBe(Condition.visible);
             $(".promoblock").$$("img").forEach(SelenideElement::isImage);
@@ -30,7 +30,15 @@ public class HomePageTests extends BaseTest{
     }
 
     @Test
-    public void testsForSaleAndBenefitsPages(){
+    public void openCategoriesPopupsTest(){
+        for(SelenideElement element : $$("[class^='main-menu-item']")){
+            element.hover().$(".submenu").shouldBe(Condition.visible);
+            element.hover().$$(".submenu-inner .small-product-wrapper").forEach(SelenideElement::isDisplayed);
+        }
+    }
+
+    @Test
+    public void saleAndBenefitsPagesTest(){
         $("td.last.sale").click();
         $$("li.promotion-item img").forEach(SelenideElement::isImage);
         open($(".header-orange-link").getAttribute("href"));

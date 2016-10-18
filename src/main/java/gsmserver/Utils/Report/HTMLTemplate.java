@@ -39,7 +39,6 @@ class HTMLTemplate {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     void clean() {
