@@ -6,7 +6,6 @@ import gsmserver.Components.User;
 import gsmserver.Utils.CustomConditions;
 import gsmserver.Utils.Random;
 import ru.yandex.qatools.allure.annotations.Step;
-import ru.yandex.qatools.allure.annotations.Title;
 
 import static com.codeborne.selenide.Selenide.$;
 import static gsmserver.Utils.CustomConditions.signaturesOfFieldsHaveRequiredLabel;
@@ -21,7 +20,7 @@ public class Registration{
         user = new User();
     }
 
-    @Step
+    @Step("Register user with firstName: [{0}], login: [{1}], email {2}")
     public void registerUser(final String firstNameValue, final String loginValue, final String emailValue){
         user.fillFirstName(firstNameValue).
                 fillLogin(loginValue).
@@ -44,8 +43,7 @@ public class Registration{
         return this;
     }
 
-    @Title("Verify validation the form \"Registration\" with empty fields in form")
-    @Step
+    @Step("Verify validation the form \"Registration\" with empty fields in form")
     public Registration verifyRegistrationFormValidationWithEmptyForm(){
         this.clearForm();
         BaseComponent.formSummary.shouldNotBe(Condition.visible);
@@ -71,8 +69,7 @@ public class Registration{
         return this;
     }
 
-    @Title("Verify validation the form \"Registration\" with random fields in form, but login should be is already registered")
-    @Step
+    @Step("Verify validation the form \"Registration\" with random fields in form, but login should be is already registered")
     public Registration verifyRegistrationFormValidationWithSomeValues(){
         this.clearForm();
         user.fillLogin("t");

@@ -36,7 +36,7 @@ public class MakeOrderTests extends BaseTest{
                 fillAddress(generateRandomString("address"));
         SelenideElement nextStep = $(".checkout-button-next-wrapper > a");
         nextStep.click();
-        new DeliveryService().chooseDeliveryServiceAndVerifyCost("DHL");
+        new DeliveryService().chooseDeliveryServiceAndCheckCost("DHL");
         nextStep.click();
         new PaymentService().choosePaymentServiceAndCheckCost(skrillPaymentService);
         nextStep.click();

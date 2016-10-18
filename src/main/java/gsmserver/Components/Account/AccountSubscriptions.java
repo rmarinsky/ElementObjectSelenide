@@ -20,7 +20,7 @@ public class AccountSubscriptions {
         return new AccountSubscriptions();
     }
 
-    @Step
+    @Step("Should be selected subscription by index:: [{0}]")
     public void shouldBeSelectedSubscriptionByIndex(int i){
         this.subscriptionView.$("label.styled-checkbox", i).has(Condition.attribute("data-selected", "1"));
         this.subscriptionView.$("div.form-summary").has(Condition.cssClass("success"));

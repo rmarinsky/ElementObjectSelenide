@@ -23,7 +23,7 @@ public class ContactInformation {
         return new ContactInformation();
     }
 
-    @Step
+    @Step("Check that countries: [{0}], have required filed tax id")
     public ContactInformation verifyCountriesWithRequiredTaxId(String... countries) {
         for(String country : countries) {
             user.chooseCountry(country);
@@ -32,7 +32,7 @@ public class ContactInformation {
         return this;
     }
 
-    @Step
+    @Step("Check that countries: [{0}], have required filed middle name")
     public ContactInformation verifyCountriesWithRequiredMiddleName(String... countries){
         for(String country : countries) {
             user.chooseCountry(country);
@@ -41,7 +41,7 @@ public class ContactInformation {
         return this;
     }
 
-    @Step
+    @Step("Check that countries: [{0}], have required filed Region")
     public ContactInformation verifyCountriesWithRequiredRegion(String... countries){
         for(String country : countries) {
             user.chooseCountry(country);
@@ -52,7 +52,7 @@ public class ContactInformation {
         return this;
     }
 
-    @Step
+    @Step("Products: [{0}], forbidden to sell")
     public ContactInformation shouldBeVisibleNotificationForbiddenToSellProduct(Integer... idProduct){
         $("#products-forbidden-to-sell-in-user-country").shouldBe(Condition.visible, Condition.and ("Have notification", Condition.text("Not for the USA")));
         for(Integer product : idProduct){
@@ -61,7 +61,7 @@ public class ContactInformation {
         return this;
     }
 
-    @Step
+    @Step("Click on button 'Remove' and check that cart have no product:: [{0}]")
     public ContactInformation removeAndCheckRemovingInCart(Integer idProduct){
         $(".button-okay").click();
         $("#cart").shouldBe(Condition.exist);

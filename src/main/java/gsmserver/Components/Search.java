@@ -7,11 +7,11 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class Search {
 
-    @Step
+    @Step("Search for: [{0}]")
     public ProductList searchFor(String q){
-        $(byName("q")).val(q);
+        $(byName("q")).setValue(q);
         $("a.search-input-submit").submit();
-        return new ProductList(q);
+        return new ProductList();
     }
 
 }

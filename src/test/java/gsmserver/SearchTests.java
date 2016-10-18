@@ -13,7 +13,7 @@ public class SearchTests extends BaseTest {
     @Title(value = "Test for search")
     @Test public void searchTest(){
         new Search().searchFor("smart-clip").
-                searchResultShouldHasSearchedPhrase();
+                searchResultShouldHasSearchedPhrase("smart-clip");
     }
 
 }

@@ -53,7 +53,7 @@ public class ForgotPassword{
         BaseComponent.formSummary.findAll("a[href]").shouldHave(CollectionCondition.texts("register", " without registration"));
     }
 
-    @Step
+    @Step("Recovery password for user:: [{0}]")
     public void recoveryPasswordForUser(String value){
         SelenideElement fieldEmail = $(user.fieldEmail);
         fieldEmail.clear();

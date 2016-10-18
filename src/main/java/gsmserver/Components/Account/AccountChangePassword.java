@@ -23,7 +23,7 @@ public class AccountChangePassword {
         return new AccountChangePassword();
     }
 
-    @Step
+    @Step("Change password to: [{0}]")
     public void changePassword(final String tempPassword){
         user.fillPassword(tempPassword);
         user.fillConfirmPassword(tempPassword);

@@ -22,7 +22,7 @@ public class AuthorisationPopup {
         user = new User();
     }
 
-    @Step
+    @Step("Login user: [{0}], with pasw: [{1}]")
     public TopLinks loginUser(final String login, final String password){
         user.fillLogin(login).
                 fillPassword(password);
@@ -30,12 +30,12 @@ public class AuthorisationPopup {
         return new TopLinks();
     }
 
-    @Step("Should have no class 'error'")
+    @Step("Element: [{0}], should have no class 'error'")
     private void shouldHaveNoClassError(By by){
         $(by).shouldNotHave(classError());
     }
 
-    @Step
+    @Step("Element: [{0}], should have class 'error'")
     private void shouldHaveClassError(By by){
         $(by).shouldHave(classError());
     }

@@ -27,7 +27,7 @@ public class TopLinks {
         return this;
     }
 
-    @Step
+    @Step("Check that user have name: [{0}]")
     public void userHaveName(final String name){
         $("li.account-name a").shouldHave(Condition.text(name));
     }

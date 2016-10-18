@@ -15,7 +15,7 @@ public class PaymentService {
      * @return
      * object Payment
      */
-    @Step
+    @Step("Choose payment service: [{0}] and check cost")
     public PaymentService choosePaymentServiceAndCheckCost(final String idOfPaymentService){
         SelenideElement paymentService = $("tr[data-sm-target='checkout.payment-service-" + idOfPaymentService);
         String cost = paymentService.$("td>strong").getText();

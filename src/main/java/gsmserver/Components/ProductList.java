@@ -9,13 +9,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class ProductList {
 
-    private String searchedPhrase;
-
-    private ProductList(){}
-
-    ProductList(String searchedPhrase){
-        this.searchedPhrase = searchedPhrase;
-    }
+    ProductList(){}
 
     private final SelenideElement searchTitle = $(".search-title-highlight");
 
@@ -29,18 +23,18 @@ public class ProductList {
      * Search result page should have searched phrase in a title
      */
     @Step
-    public ProductList searchResultShouldHasSearchedPhrase(){
-        searchTitle.shouldHave(Condition.text(searchedPhrase));
+    public ProductList searchResultShouldHasSearchedPhrase(String searchedPhrase){
+        searchTitle.shouldHave(Condition.text(searchedPhrase+"dssassaas"));
         return this;
     }
 
-    @Step
+    @Step("Page should have product with id: [{0}]")
     public void shouldHaveProduct(int id){
         Product.findProduct(id, "li").shouldBe(Condition.visible);
     }
 
-    @Step
-    public void shouldNotHaveProduct(int id){
+    @Step("Page should have no product with id: [{0}]")
+    public void shouldHaveNoProduct(int id){
         Product.findProduct(id, "li").shouldNotBe(Condition.visible);
     }
 

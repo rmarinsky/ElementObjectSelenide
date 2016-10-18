@@ -3,7 +3,6 @@ package gsmserver.Components.Account;
 import com.codeborne.selenide.Condition;
 import gsmserver.Components.User;
 import gsmserver.Utils.CustomConditions;
-import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Selectors.byCssSelector;
@@ -25,15 +24,14 @@ public class AccountPersonalData {
         return new AccountPersonalData();
     }
 
-    @Step
+    @Step("Check that 'login' has value: [{0}], 'email' has value: [{1}], 'firstName' has value: [{2}]")
     public void loginEmailFirstNameShouldBe(final String loginValue, final String emailValue, final String firstNameValue){
         $(user.fieldLogin).has(Condition.value(loginValue));
         $(user.fieldEmail).has(Condition.value(emailValue));
         $(user.fieldFirstName).has(Condition.value(firstNameValue));
     }
 
-    @Description("Check that elements are required: First name, Country, Email. Check that elements are NOT required: Last name, Birthday, Region, City, Phone")
-    @Step
+    @Step("Check that elements are required: First name, Country, Email. Check that elements are NOT required: Last name, Birthday, Region, City, Phone")
     public void verifyVisibleOfRequiredLabelCom(){
         CustomConditions.signaturesOfFieldsHaveRequiredLabel(user.fieldFirstName, user.customCountry, user.fieldEmail);
         CustomConditions.signaturesOfFieldsHaveNoRequiredLabel(user.fieldLastName, user.customBirthday,

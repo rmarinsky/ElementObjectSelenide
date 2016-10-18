@@ -13,11 +13,12 @@ public class Product {
     public final static ElementsCollection addToCartButtons = $$("a.ga-add-to-cart");
     public final static SelenideElement inputQuantity = $("div.quantity-input");
 
+    @Step("Find product by id: [{0}]")
     static SelenideElement findProduct(final Integer id, final String tagName){
         return $(String.format("%s[data-product-id='%s']", tagName, id));
     }
 
-    @Step
+    @Step("Add to cart product: [{0}] in count: [{1}]")
     public void addProductToCartViaJs(final Integer productId, Integer count){
         new JSExecutor().GETRequest(String.format("/ajax/cart/add/%s,%s", productId, count));
     }

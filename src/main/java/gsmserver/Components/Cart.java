@@ -25,7 +25,7 @@ public class Cart{
      * @param id
      * id of product (Example: 856333)
      */
-    @Step
+    @Step("Cart should have product: [{0}]")
     public void cartShouldHaveProduct(Integer id){
         Product.findProduct(id, "tr").shouldBe(Condition.visible);
     }
