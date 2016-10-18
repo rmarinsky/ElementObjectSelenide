@@ -30,9 +30,6 @@ public class Search {
         element.click();
         element.shouldBe(Condition.visible);
         this.searchFor(searchQuery);
-        if(searchQuery.equalsIgnoreCase("led lamp")){
-            searchQuery = searchQuery+"olo";
-        }
         $("span.search-title-highlight").shouldHave(Condition.text(searchQuery));
         $("span[style='background-color: #ffee33']").shouldBe(Condition.visible);
     }
