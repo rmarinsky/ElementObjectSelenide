@@ -24,7 +24,7 @@ public class ProductList {
      */
     @Step
     public ProductList searchResultShouldHasSearchedPhrase(String searchedPhrase){
-        searchTitle.shouldHave(Condition.text(searchedPhrase+"dssassaas"));
+        searchTitle.shouldHave(Condition.text(searchedPhrase));
         return this;
     }
 
