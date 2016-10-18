@@ -1,6 +1,7 @@
 package gsmserver.Components;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import gsmserver.Utils.JSExecutor;
 import org.openqa.selenium.By;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -14,7 +15,7 @@ public class User {
 
     private boolean useComponent = false;
 
-    private By formAddress = byCssSelector("form[name='address']");
+    private SelenideElement formAddress = $("form[name='address']");
 
     public final By fieldLogin = byCssSelector("input[name*='username']"),
             fieldPassword = byCssSelector("input[name*='password']"),
@@ -62,7 +63,7 @@ public class User {
     @Step
     public User fillFirstName(final String value){
         if(useComponent){
-            $(formAddress).$(this.fieldFirstName).setValue(value);
+            formAddress.$(this.fieldFirstName).setValue(value);
         } else {
             $(this.fieldFirstName).setValue(value);
         }
@@ -72,7 +73,7 @@ public class User {
     @Step
     public User fillLastName(final String value) {
         if(useComponent){
-            $(formAddress).$(this.fieldLastName).setValue(value);
+            formAddress.$(this.fieldLastName).setValue(value);
         } else {
             $(this.fieldLastName).setValue(value);
         }
@@ -82,7 +83,7 @@ public class User {
     @Step
     public User fillMiddleName(final String value) {
             if(useComponent){
-                $(formAddress).$(this.fieldMiddleName).setValue(value);
+                formAddress.$(this.fieldMiddleName).setValue(value);
             } else {
                 $(this.fieldMiddleName).setValue(value);
             }
@@ -92,7 +93,7 @@ public class User {
     @Step
     public User fillEmail(final String value) {
         if(useComponent){
-            $(formAddress).$(this.fieldEmail).setValue(value);
+            formAddress.$(this.fieldEmail).setValue(value);
         } else {
             $(this.fieldEmail).setValue(value);
         }
@@ -102,7 +103,7 @@ public class User {
     @Step
     public User fillAddress(final String value) {
         if(useComponent){
-            $(formAddress).$(this.fieldAddress).setValue(value);
+            formAddress.$(this.fieldAddress).setValue(value);
         } else {
             $(this.fieldAddress).setValue(value);
         }
