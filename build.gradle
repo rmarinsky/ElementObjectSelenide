@@ -1,6 +1,8 @@
 group 'SelenideTestProject'
 version '0.3'
 
+defaultTasks 'clean'
+
 apply plugin: 'java'
 apply plugin: 'ru.d10xa.allure'
 
@@ -34,7 +36,7 @@ dependencies {
     compile 'ru.yandex.qatools.allure:allure-junit-adaptor:1.4.+'
     compile 'org.rendersnake:rendersnake:+'
     compile 'com.automation-remarks:video-recorder-junit:+'
-    compile 'io.github.bonigarcia:webdrivermanager:1.4.10'
+    compile 'io.github.bonigarcia:webdrivermanager:+'
 }
 
 tasks.withType(Test) {
