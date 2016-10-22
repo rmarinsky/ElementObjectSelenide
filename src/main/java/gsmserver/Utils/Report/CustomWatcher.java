@@ -10,8 +10,8 @@ public class CustomWatcher extends TestWatcher {
     private final HTMLTemplate report = new HTMLTemplate();
 
     private boolean onFailedTest = true;
-    private boolean onSucceededTest = false;
-    private boolean saveVideo = false;
+    private boolean onSucceededTest = true;
+    private boolean saveVideo = true;
 
 
     public CustomWatcher onFailedTest(boolean onFailedTest) {
@@ -42,7 +42,9 @@ public class CustomWatcher extends TestWatcher {
         if (onSucceededTest) {
             report.finish();
             AllureReportUtil.attachScreenshot();
-            AllureReportUtil.attachVideo();
+            if(saveVideo) {
+                AllureReportUtil.attachVideo();
+            }
         }
     }
 
@@ -51,7 +53,9 @@ public class CustomWatcher extends TestWatcher {
         if (onFailedTest) {
             report.finish();
             AllureReportUtil.attachScreenshot();
-            AllureReportUtil.attachVideo();
+            if(saveVideo) {
+                AllureReportUtil.attachVideo();
+            }
         }
     }
 

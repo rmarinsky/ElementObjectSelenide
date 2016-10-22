@@ -60,4 +60,8 @@ public class Product {
         }
     }
 
+    public void removeProductFromWishListViaJS(Integer productId){
+        new JSExecutor().GETRequest("/account/wishlist/remove/?productId="+String.valueOf(productId));
+    }
+
 }

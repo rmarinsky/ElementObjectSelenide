@@ -82,11 +82,11 @@ public class User {
 
     @Step
     public User fillMiddleName(final String value) {
-            if(useComponent){
-                formAddress.$(this.fieldMiddleName).setValue(value);
-            } else {
-                $(this.fieldMiddleName).setValue(value);
-            }
+        if(useComponent){
+            formAddress.$(this.fieldMiddleName).setValue(value);
+        } else {
+            $(this.fieldMiddleName).setValue(value);
+        }
         return this;
     }
 
@@ -121,26 +121,26 @@ public class User {
 
     @Step
     public User chooseCountry(final String value){
-        $("h1").scrollTo();
-        $(this.customCountry).click();
-        this.selectItem(value);
+        chooseCustom(this.customCountry, value);
         return this;
     }
 
     @Step
     public User chooseRegion(final String value){
-        $("h1").scrollTo();
-        $(this.customRegion).click();
-        this.selectItem(value);
+        this.chooseCustom(this.customRegion, value);
         return this;
     }
 
     @Step
     public User chooseCity(final String value){
-        $("h1").scrollTo();
-        $(this.customCity).click();
-        this.selectItem(value);
+        this.chooseCustom(this.customCity, value);
         return this;
+    }
+
+    private void chooseCustom(final By customElement, final String value){
+        $("h1").scrollTo();
+        $(customElement).click();
+        this.selectItem(value);
     }
 
     @Step

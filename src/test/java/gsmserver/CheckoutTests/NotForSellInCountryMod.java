@@ -51,7 +51,7 @@ public class NotForSellInCountryMod extends BaseTest{
     }
 
     @Test
-    public void test(){
+    public void testForSearchForbiddenProducts(){
         new Search().searchFor(String.valueOf(octopusProduct)).searchResultShouldHasSearchedPhrase(String.valueOf(octopusProduct)).shouldHaveProduct(octopusProduct);
         new User().loginUserViaJS(defaultEmail, defaultPassword).setCountryUSAForUserViaJS();
         new Search().searchFor(String.valueOf(octopusProduct)).searchResultShouldHasSearchedPhrase(String.valueOf(octopusProduct)).shouldHaveNoProduct(octopusProduct);

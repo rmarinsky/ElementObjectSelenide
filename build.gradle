@@ -19,6 +19,7 @@ buildscript {
 allure {
     aspectjweaver = true
     junit = true
+
     allureResultsDir = "$buildDir/allure-results"
     allureReportDir = "$buildDir/allure-report"
 }
