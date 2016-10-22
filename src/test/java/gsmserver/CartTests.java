@@ -14,6 +14,4 @@ public class CartTests extends BaseTest{
         Cart.openCartPage().cartShouldHaveProduct(834632);
     }
 
-
-
 }

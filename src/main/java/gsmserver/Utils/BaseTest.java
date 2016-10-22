@@ -1,13 +1,14 @@
 package gsmserver.Utils;
 
 import com.automation.remarks.junit.VideoRule;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import gsmserver.Pages.HomePage;
 import gsmserver.Utils.Report.CustomWatcher;
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.sleep;
@@ -28,16 +29,18 @@ public abstract class BaseTest {
 
     @BeforeClass
     public static void baseBeforeClass(){
-        Configuration.baseUrl = defaultBaseUrl;
-        if(!(WebDriverRunner.getWebDriver().getCurrentUrl().equalsIgnoreCase(baseUrl + "/")))
-            HomePage.openHomePage();
+        baseUrl = defaultBaseUrl;
+        ChromeDriverManager.getInstance().setup();
+        WebDriverRunner.setWebDriver(new ChromeDriver());
+        /*if(!(WebDriverRunner.getWebDriver().getCurrentUrl().equalsIgnoreCase(baseUrl + "/")))
+            HomePage.openHomePage();*/
     }
 
     @Before
     public void beforeBase(){
-        clearCookies();
         if(!(WebDriverRunner.getWebDriver().getCurrentUrl().equalsIgnoreCase(baseUrl + "/")))
             HomePage.openHomePage();
+        clearCookies();
     }
     /*@After
     public void baseAfter(){
@@ -48,7 +51,7 @@ public abstract class BaseTest {
         if(!(WebDriverRunner.getWebDriver().getCurrentUrl().equalsIgnoreCase("https://temp-mail.ru/"))) {
             WebDriverRunner.getWebDriver().manage().deleteAllCookies();
             WebDriverRunner.getWebDriver().manage().deleteAllCookies();
-            sleep(200);
+            sleep(300);
         }
     }
 

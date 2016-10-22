@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static gsmserver.Components.Product.addToCartButtons;
+import static gsmserver.Components.Product.buttonAddToCart;
 import static gsmserver.Components.Product.inputQuantity;
 
 public final class HomePage extends BaseTest{
@@ -28,7 +28,7 @@ public final class HomePage extends BaseTest{
 
     public HomePage bannersShouldBeVisible(){
         this.mainBanner.shouldBe(Condition.visible);
-        $("div.side-banner.left-banner").shouldBe(Condition.visible);
+        //$("div.side-banner.left-banner").shouldBe(Condition.visible);
         $("div.side-banner.right-banner").shouldBe(Condition.visible);
         return this;
     }
@@ -40,8 +40,8 @@ public final class HomePage extends BaseTest{
 
     @Step
     public HomePage addToCartFirstProduct(){
-        addToCartButtons.get(0).click();
-        inputQuantity.shouldBe(Condition.visible);
+        $(buttonAddToCart).click();
+        $(inputQuantity).shouldBe(Condition.visible);
         return this;
     }
 

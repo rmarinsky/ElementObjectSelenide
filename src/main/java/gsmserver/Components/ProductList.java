@@ -22,7 +22,7 @@ public class ProductList {
     /**
      * Search result page should have searched phrase in a title
      */
-    @Step
+    @Step("Search result page should has searched phrase: [{0}]")
     public ProductList searchResultShouldHasSearchedPhrase(String searchedPhrase){
         searchTitle.shouldHave(Condition.text(searchedPhrase));
         return this;
@@ -30,12 +30,12 @@ public class ProductList {
 
     @Step("Page should have product with id: [{0}]")
     public void shouldHaveProduct(int id){
-        Product.findProduct(id, "li").shouldBe(Condition.visible);
+        Product.findProduct(id).shouldBe(Condition.visible);
     }
 
     @Step("Page should have no product with id: [{0}]")
     public void shouldHaveNoProduct(int id){
-        Product.findProduct(id, "li").shouldNotBe(Condition.visible);
+        Product.findProduct(id).shouldNotBe(Condition.visible);
     }
 
 }

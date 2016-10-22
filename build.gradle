@@ -30,10 +30,11 @@ dependencies {
     compile 'org.aspectj:aspectjweaver:+'
     compile 'junit:junit:+'
     compile 'org.slf4j:slf4j-nop:+'
-    compile 'com.codeborne:selenide:3.10'
+    compile 'com.codeborne:selenide:+'
     compile 'ru.yandex.qatools.allure:allure-junit-adaptor:1.4.+'
     compile 'org.rendersnake:rendersnake:+'
     compile 'com.automation-remarks:video-recorder-junit:+'
+    compile 'io.github.bonigarcia:webdrivermanager:1.4.10'
 }
 
 tasks.withType(Test) {
@@ -43,9 +44,9 @@ tasks.withType(Test) {
         testTask.reports.html.enabled = false
         testTask.ignoreFailures = true
         testTask.systemProperties(
-                'webdriver.chrome.driver':'Drivers/chromedriver.exe',
-                'chrome.switches': '--disable-extensions',
+                'webdriver.chrome.driver':'src/main/resources/chromedriver.exe',
                 'selenide.browser':'chrome',
+                'chrome.switches': '--disable-extensions',
                 'selenide.start.maximized':'true',
                 'selenide.savePageSource':'false',
                 'selenide.timeout':'4000',

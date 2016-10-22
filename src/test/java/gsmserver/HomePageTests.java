@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.io.FileNotFoundException;
 
 import static com.codeborne.selenide.Selenide.*;
-import static gsmserver.Components.Product.addToCartButtons;
+import static gsmserver.Components.Product.buttonAddToCart;
 import static org.junit.Assert.fail;
 
 public class HomePageTests extends BaseTest{
@@ -25,7 +25,7 @@ public class HomePageTests extends BaseTest{
             open(element.getAttribute("href"));
             $(".promoblock").shouldBe(Condition.visible);
             $(".promoblock").$$("img").forEach(SelenideElement::isImage);
-            addToCartButtons.forEach(SelenideElement::exists);
+            $$(buttonAddToCart).forEach(SelenideElement::isDisplayed);
         }
     }
 

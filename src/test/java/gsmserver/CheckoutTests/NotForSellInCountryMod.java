@@ -13,7 +13,7 @@ import org.junit.Test;
 import static gsmserver.Utils.DefaultData.defaultEmail;
 import static gsmserver.Utils.DefaultData.defaultPassword;
 
-public class NotForBuyingInCountryMod extends BaseTest{
+public class NotForSellInCountryMod extends BaseTest{
 
     private Integer octopusProduct = 832722;
 

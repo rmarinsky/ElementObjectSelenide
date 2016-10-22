@@ -10,7 +10,7 @@ public class Cart{
 
     private String productArg;
 
-    private Cart(){
+    Cart(){
         $("#cart").shouldBe(Condition.visible);
     }
 
@@ -27,7 +27,7 @@ public class Cart{
      */
     @Step("Cart should have product: [{0}]")
     public void cartShouldHaveProduct(Integer id){
-        Product.findProduct(id, "tr").shouldBe(Condition.visible);
+        Product.findProduct(id).shouldBe(Condition.visible);
     }
 
 }

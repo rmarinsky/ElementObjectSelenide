@@ -10,10 +10,17 @@ public class CustomWatcher extends TestWatcher {
     private final HTMLTemplate report = new HTMLTemplate();
 
     private boolean onFailedTest = true;
-    private boolean onSucceededTest = true;
+    private boolean onSucceededTest = false;
+    private boolean saveVideo = false;
+
 
     public CustomWatcher onFailedTest(boolean onFailedTest) {
         this.onFailedTest = onFailedTest;
+        return this;
+    }
+
+    public CustomWatcher saveVideo(boolean saveVideo){
+        this.saveVideo = saveVideo;
         return this;
     }
 

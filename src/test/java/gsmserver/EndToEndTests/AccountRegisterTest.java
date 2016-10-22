@@ -1,5 +1,6 @@
 package gsmserver.EndToEndTests;
 
+import com.codeborne.selenide.Selenide;
 import com.tempmail.TempMail;
 import gsmserver.Components.Account.AccountChangePassword;
 import gsmserver.Components.Account.AccountPersonalData;
@@ -8,6 +9,7 @@ import gsmserver.Components.TopLinks;
 import gsmserver.Utils.BaseTest;
 import gsmserver.Utils.Random;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static com.tempmail.TempMail.getTempEMail;
@@ -21,9 +23,11 @@ public class AccountRegisterTest extends BaseTest {
         TempMail.setTempPassword(Random.generateRandomString());
     }
 
+    @Ignore
     @Test
     public void registerNewUserAndChangePassword(){
         clearCookies();
+        Selenide.refresh();
         new TopLinks().openLoginPopup().openRegistrationForm().
                 registerUser(super.defaultTestValue, getTempEMail(), getTempEMail());
         TempMail.openTempMail().
@@ -39,6 +43,5 @@ public class AccountRegisterTest extends BaseTest {
 
         AccountSubscriptions.openAccountSubscriptionsPage().shouldBeSelectedSubscriptionByIndex(0);
     }
-
 
 }
