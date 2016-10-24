@@ -7,15 +7,15 @@ import ru.yandex.qatools.allure.annotations.Step;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class BaseComponent{
+public class MainComponent {
 
     public static final SelenideElement formDescription = $("div.page-description > p");
     public static final SelenideElement formSummary = $("div.form-summary");
 
     @Step
-    public static BaseComponent submitForm(){
+    public static MainComponent submitForm(){
         $("button[type='submit']").click();
-        return new BaseComponent();
+        return new MainComponent();
     }
 
     @Step

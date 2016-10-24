@@ -1,27 +1,32 @@
 package gsmserver.CheckoutTests;
 
-import gsmserver.Components.BaseComponent;
+import gsmserver.Components.MainComponent;
 import gsmserver.Components.Checkout.ContactInformation;
 import gsmserver.Components.Product;
 import gsmserver.Components.Search;
 import gsmserver.Components.User;
 import gsmserver.Utils.BaseTest;
 import gsmserver.Utils.Random;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static gsmserver.Utils.DefaultData.defaultEmail;
 import static gsmserver.Utils.DefaultData.defaultPassword;
+import static gsmserver.Utils.DefaultData.octopusProduct;
 
 public class NotForSellInCountryMod extends BaseTest{
-
-    private Integer octopusProduct = 832722;
 
     @Before
     public void beforeBase(){
         clearCookies();
-        new Product().addProductToCartViaJs(octopusProduct, 1);
+        new Product().addProductToCartViaJS(octopusProduct, 1);
         ContactInformation.openCheckoutPage();
+    }
+
+    @After
+    public void afterClass(){
+        new Product().removeProductFromCartViaJS(octopusProduct);
     }
 
     @Test
@@ -32,7 +37,7 @@ public class NotForSellInCountryMod extends BaseTest{
                 chooseCountry("United States").chooseRegion("Colorado").
                 fillPhoneByCountry("United States", "112223333").fillCity("testTempString").
         fillEmail(Random.generateRandomEmail()).fillAddress(testTempString);
-        BaseComponent.submitStepCheckout();
+        MainComponent.submitStepCheckout();
         new ContactInformation().shouldBeVisibleNotificationForbiddenToSellProduct(octopusProduct).
                 removeAndCheckRemovingInCart(octopusProduct);
     }
@@ -45,7 +50,7 @@ public class NotForSellInCountryMod extends BaseTest{
                 chooseCountry("United States").chooseRegion("Colorado").
                 fillPhoneByCountry("United States", "112223333").fillCity("testTempString").
                 fillEmail(Random.generateRandomEmail()).fillAddress(testTempString);
-        BaseComponent.submitStepCheckout();
+        MainComponent.submitStepCheckout();
         new ContactInformation().shouldBeVisibleNotificationForbiddenToSellProduct(octopusProduct).
                 removeAndCheckRemovingInCart(octopusProduct);
     }

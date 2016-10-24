@@ -2,6 +2,7 @@ package gsmserver.Components;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import gsmserver.Components.Account.AccountPersonalData;
 import gsmserver.Utils.JSExecutor;
 import org.openqa.selenium.By;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -9,7 +10,6 @@ import ru.yandex.qatools.allure.annotations.Step;
 import static com.codeborne.selenide.Selectors.byCssSelector;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 public class User {
 
@@ -17,6 +17,7 @@ public class User {
 
     private SelenideElement formAddress = $("form[name='address']");
 
+    @SuppressWarnings("WeakerAccess")
     public final By fieldLogin = byCssSelector("input[name*='username']"),
             fieldPassword = byCssSelector("input[name*='password']"),
             fieldPasswordConfirm = byCssSelector("input[name*='password_confirm']"),
@@ -138,9 +139,9 @@ public class User {
     }
 
     private void chooseCustom(final By customElement, final String value){
-        $("h1").scrollTo();
+        $("#top-links").scrollTo();
         $(customElement).click();
-        this.selectItem(value);
+        $(byXpath(String.format("//li//span[.='%s']", value))).scrollTo().click();
     }
 
     @Step
@@ -153,10 +154,6 @@ public class User {
         return this;
     }
 
-    private void selectItem(String nameOfItem){
-        $(byXpath(String.format("//li//span[.='%s']", nameOfItem))).scrollTo().click();
-    }
-
     @Step
     public User loginUserViaJS(final String login, final String password){
         new JSExecutor().POSTWithParams("/user/login/", String.format("{'login[username]':'%s', 'login[password]':'%s'}", login, password));
@@ -165,14 +162,14 @@ public class User {
 
     @Step
     public void setCountryUSAForUserViaJS(){
-        open("/account/data/");
+        AccountPersonalData.openPersonalDataPage();
         String csrf = $("[name='YII_CSRF_TOKEN']").getValue();
         new JSExecutor().POSTWithParams("/account/data/", "{'account[countryId]':'840', 'account[stateId]':'-1', 'YII_CSRF_TOKEN':'"+csrf+"'}");
     }
 
     @Step
     public void setCountrySpainForUserViaJS(){
-        open("/account/data/");
+        AccountPersonalData.openPersonalDataPage();
         String csrf = $("[name='YII_CSRF_TOKEN']").getValue();
         new JSExecutor().POSTWithParams("/account/data/", "{'account[countryId]':'724', 'account[stateId]':'-1', 'YII_CSRF_TOKEN':'"+csrf+"'}");
     }

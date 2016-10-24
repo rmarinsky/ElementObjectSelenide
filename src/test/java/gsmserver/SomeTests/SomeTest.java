@@ -1,30 +1,32 @@
 
 package gsmserver.SomeTests;
 
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
-import io.github.bonigarcia.wdm.ChromeDriverManager;
-import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.*;
 
 public class SomeTest {
-
-    @BeforeClass
-    public static void olo() {
-        Configuration.baseUrl = "http://gsmserver.com.gsm-s20.marinskyi.dev/";
-        ChromeDriverManager.getInstance().setup();
-        WebDriverRunner.setWebDriver(new ChromeDriver());
-    }
 
     @Ignore
     @Test
     public void test() {
-        open("");
-        sleep(1000);
+        Configuration.holdBrowserOpen = true;
+        Configuration.timeout = 10000;
+        Configuration.collectionsTimeout = 20000;
+        open("http://rc.gsmserver.com/cellphones/");
+        $(".mobile-switcher a").click();
+        for(int i=0;;i++){
+            int count = $$(".product-item").size();
+            sleep(300);
+            $(".show-more-wrapper a").shouldBe(Condition.visible).scrollTo();
+            $(".show-more-wrapper a").shouldBe(Condition.visible).scrollTo();
+            System.out.println("Iter" + i +" SIZE " + count);
+            $(".show-more-wrapper a").shouldBe(Condition.visible).click();
+            $$(".product-item").shouldHave(CollectionCondition.sizeGreaterThan(count));
+        }
     }
 }

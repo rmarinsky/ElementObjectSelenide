@@ -50,7 +50,7 @@ public class Product {
     }
 
     @Step("Add to cart product: [{0}] in count: [{1}]")
-    public void addProductToCartViaJs(final Integer productId, Integer count){
+    public void addProductToCartViaJS(final Integer productId, Integer count){
         new JSExecutor().GETRequest(String.format("/ajax/cart/add/%s,%s", productId, count));
     }
 
@@ -62,6 +62,9 @@ public class Product {
 
     public void removeProductFromWishListViaJS(Integer productId){
         new JSExecutor().GETRequest("/account/wishlist/remove/?productId="+String.valueOf(productId));
+    }
+    public void removeProductFromCartViaJS(Integer productId){
+        new JSExecutor().GETRequest("/ajax/cart/remove/"+String.valueOf(productId)+"?ajax=on&pageType=cart");
     }
 
 }

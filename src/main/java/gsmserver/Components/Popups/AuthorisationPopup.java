@@ -9,7 +9,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selenide.$;
-import static gsmserver.Components.BaseComponent.submitForm;
+import static gsmserver.Components.MainComponent.submitForm;
 import static gsmserver.Utils.CustomConditions.*;
 import static gsmserver.Utils.Random.generateRandomString;
 

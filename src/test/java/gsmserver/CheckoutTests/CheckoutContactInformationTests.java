@@ -3,18 +3,21 @@ package gsmserver.CheckoutTests;
 import gsmserver.Components.Checkout.ContactInformation;
 import gsmserver.Components.Product;
 import gsmserver.Utils.BaseTest;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
-import static gsmserver.Utils.DefaultData.defaultLowCostProduct;
+import static gsmserver.Utils.DefaultData.defaultAvrgCostProduct;
 
 public class CheckoutContactInformationTests extends BaseTest{
 
     @BeforeClass
     public static void beforeClass(){
         clearCookies();
-        new Product().addProductToCartViaJs(defaultLowCostProduct, 1);
+        new Product().addProductToCartViaJS(defaultAvrgCostProduct, 1);
+    }
+
+    @AfterClass
+    public static void afterClass(){
+        new Product().removeProductFromCartViaJS(defaultAvrgCostProduct);
     }
 
     @Before

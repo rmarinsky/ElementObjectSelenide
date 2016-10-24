@@ -1,7 +1,7 @@
 package gsmserver.Components.Account;
 
 import com.codeborne.selenide.Condition;
-import gsmserver.Components.BaseComponent;
+import gsmserver.Components.MainComponent;
 import gsmserver.Components.User;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -27,7 +27,7 @@ public class AccountChangePassword {
     public void changePassword(final String tempPassword){
         user.fillPassword(tempPassword);
         user.fillConfirmPassword(tempPassword);
-        BaseComponent.submitForm();
+        MainComponent.submitForm();
         $("#ChangePasswordConfirm").shouldBe(Condition.visible);
     }
 

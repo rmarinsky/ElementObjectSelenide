@@ -34,7 +34,7 @@ public class ProductList {
     private By wishListBlock = Selectors.byCssSelector(".wish-list-block");
 
     public ProductList(){
-        $(".product-list-wrapper").shouldBe(Condition.visible);
+        $(".title-long-text-wrapper").shouldBe(Condition.visible);
     }
 
     @Step

@@ -7,21 +7,28 @@ import gsmserver.Components.Checkout.PaymentService;
 import gsmserver.Components.Product;
 import gsmserver.Components.User;
 import gsmserver.Utils.BaseTest;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Title;
 
 import static com.codeborne.selenide.Selenide.$;
+import static gsmserver.Utils.DefaultData.defaultAvrgCostProduct;
 import static gsmserver.Utils.Random.generateRandomEmail;
 import static gsmserver.Utils.Random.generateRandomString;
 
 @Description(value = "Tests for making orders")
 public class MakeOrderTests extends BaseTest{
 
-    @Before public void beforeMakeOrder(){
-        new Product().addProductToCartViaJs(834632, 1);
+    @Before public void beforeBase(){
+        clearCookies();
+        new Product().addProductToCartViaJS(defaultAvrgCostProduct, 1);
         ContactInformation.openCheckoutPage();
+    }
+
+    @After public void afterTest(){
+        new Product().removeProductFromCartViaJS(defaultAvrgCostProduct);
     }
 
     @Title("Make simple order")

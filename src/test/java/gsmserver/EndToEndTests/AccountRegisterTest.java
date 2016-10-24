@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import static com.tempmail.TempMail.getTempEMail;
 import static com.tempmail.TempMail.getTempPassword;
+import static gsmserver.Utils.DefaultData.defaultTestValue;
 
 public class AccountRegisterTest extends BaseTest {
 
@@ -29,17 +30,17 @@ public class AccountRegisterTest extends BaseTest {
         clearCookies();
         Selenide.refresh();
         new TopLinks().openLoginPopup().openRegistrationForm().
-                registerUser(super.defaultTestValue, getTempEMail(), getTempEMail());
+                registerUser(defaultTestValue, getTempEMail(), getTempEMail());
         TempMail.openTempMail().
                 confirmRegistration().checkContentOfConfirmationRegistration().subscribeOnSubjectByIndex(0);
         new AccountSubscriptions().shouldBeSelectedSubscriptionByIndex(0);
 
-        AccountPersonalData.openPersonalDataPage().loginEmailFirstNameShouldBe(super.defaultTestValue, getTempEMail(), getTempEMail());
+        AccountPersonalData.openPersonalDataPage().loginEmailFirstNameShouldBe(defaultTestValue, getTempEMail(), getTempEMail());
 
         AccountChangePassword.openChangePasswordPage().changePassword(getTempPassword());
         TempMail.openTempMail().conformPasswordRecovery().checkContentConfirmationChangePassword();
         new TopLinks().logoutUser().
-                openLoginPopup().loginUser(getTempEMail(), getTempPassword()).userHaveName(super.defaultTestValue);
+                openLoginPopup().loginUser(getTempEMail(), getTempPassword()).userHaveName(defaultTestValue);
 
         AccountSubscriptions.openAccountSubscriptionsPage().shouldBeSelectedSubscriptionByIndex(0);
     }

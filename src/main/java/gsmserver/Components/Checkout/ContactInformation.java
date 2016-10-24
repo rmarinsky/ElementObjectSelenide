@@ -3,6 +3,7 @@ package gsmserver.Components.Checkout;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selectors;
 import gsmserver.Components.User;
+import gsmserver.Utils.JSExecutor;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -19,6 +20,7 @@ public class ContactInformation {
 
     @Step
     public static ContactInformation openCheckoutPage(){
+        new JSExecutor();
         open("/checkout/");
         return new ContactInformation();
     }

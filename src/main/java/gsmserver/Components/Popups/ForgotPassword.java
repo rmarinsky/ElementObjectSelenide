@@ -3,7 +3,7 @@ package gsmserver.Components.Popups;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import gsmserver.Components.BaseComponent;
+import gsmserver.Components.MainComponent;
 import gsmserver.Components.User;
 import gsmserver.Utils.Random;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -26,31 +26,31 @@ public class ForgotPassword{
         signaturesOfFieldsHaveRequiredLabel(user.fieldEmail);
         fieldEmail.clear();
         fieldEmail.click();
-        BaseComponent.formDescription.click();
+        MainComponent.formDescription.click();
         fieldEmail.shouldHave(classError());
         fieldEmail.sendKeys(Random.generateRandomEmail());
-        BaseComponent.formDescription.click();
+        MainComponent.formDescription.click();
         fieldEmail.shouldNotHave(classError());
         this.shouldBeVisibleMassageNotRegisteredEmail();
         fieldEmail.clear();
         fieldEmail.sendKeys(Random.generateRandomString());
-        BaseComponent.submitForm();
+        MainComponent.submitForm();
         fieldEmail.shouldHave(classError());
         fieldEmail.sendKeys("@");
-        BaseComponent.submitForm();
+        MainComponent.submitForm();
         fieldEmail.shouldHave(classError());
         fieldEmail.sendKeys(Random.generateRandomString());
-        BaseComponent.submitForm();
+        MainComponent.submitForm();
         fieldEmail.shouldHave(classError());
         fieldEmail.sendKeys(".com");
-        BaseComponent.submitForm();
+        MainComponent.submitForm();
         this.shouldBeVisibleMassageNotRegisteredEmail();
     }
 
     @Step
     private void shouldBeVisibleMassageNotRegisteredEmail(){
-        BaseComponent.submitForm().submitShouldBeFailed();
-        BaseComponent.formSummary.findAll("a[href]").shouldHave(CollectionCondition.texts("register", " without registration"));
+        MainComponent.submitForm().submitShouldBeFailed();
+        MainComponent.formSummary.findAll("a[href]").shouldHave(CollectionCondition.texts("register", " without registration"));
     }
 
     @Step("Recovery password for user:: [{0}]")
@@ -58,7 +58,7 @@ public class ForgotPassword{
         SelenideElement fieldEmail = $(user.fieldEmail);
         fieldEmail.clear();
         fieldEmail.setValue(value);
-        BaseComponent.submitForm();
+        MainComponent.submitForm();
         fieldEmail.shouldBe(Condition.hidden);
         $("button[type='submit']").shouldBe(Condition.hidden);
     }

@@ -1,7 +1,7 @@
 package gsmserver.Components.Popups;
 
 import com.codeborne.selenide.Condition;
-import gsmserver.Components.BaseComponent;
+import gsmserver.Components.MainComponent;
 import gsmserver.Components.User;
 import gsmserver.Utils.CustomConditions;
 import gsmserver.Utils.Random;
@@ -25,7 +25,7 @@ public class Registration{
         user.fillFirstName(firstNameValue).
                 fillLogin(loginValue).
                 fillEmail(emailValue);
-        BaseComponent.submitForm();
+        MainComponent.submitForm();
         $("#SignUpConfirm").shouldBe(Condition.visible);
     }
 
@@ -46,7 +46,7 @@ public class Registration{
     @Step("Verify validation the form \"Registration\" with empty fields in form")
     public Registration verifyRegistrationFormValidationWithEmptyForm(){
         this.clearForm();
-        BaseComponent.formSummary.shouldNotBe(Condition.visible);
+        MainComponent.formSummary.shouldNotBe(Condition.visible);
         $(user.fieldFirstName).click();
         $(user.fieldLogin).click();
         $(user.fieldEmail).click();
@@ -54,7 +54,7 @@ public class Registration{
         $(user.fieldFirstName).shouldNotHave(CustomConditions.classError());
         $(user.fieldLogin).shouldHave(CustomConditions.classError());
         $(user.fieldEmail).shouldHave(CustomConditions.classError());
-        BaseComponent.submitForm().submitShouldBeFailed();
+        MainComponent.submitForm().submitShouldBeFailed();
         $(user.fieldLogin).shouldHave(CustomConditions.classError(), CustomConditions.cannotBeBlankTitleTip());
         $(user.fieldEmail).shouldHave(CustomConditions.classError(), CustomConditions.cannotBeBlankTitleTip());
         $("label.styled-checkbox.user-agreement").click();
@@ -83,15 +83,15 @@ public class Registration{
         user.fillEmail(Random.generateRandomString());
         $(user.fieldFirstName).click();
         $(user.fieldEmail).shouldHave(CustomConditions.classError());
-        BaseComponent.submitForm().submitShouldBeFailed();
+        MainComponent.submitForm().submitShouldBeFailed();
         $(user.fieldEmail).sendKeys("@");
-        BaseComponent.submitForm().submitShouldBeFailed();
+        MainComponent.submitForm().submitShouldBeFailed();
         $(user.fieldEmail).shouldHave(CustomConditions.classError());
         $(user.fieldEmail).sendKeys(Random.generateRandomString());
-        BaseComponent.submitForm().submitShouldBeFailed();
+        MainComponent.submitForm().submitShouldBeFailed();
         $(user.fieldEmail).shouldHave(CustomConditions.classError());
         $(user.fieldEmail).sendKeys(".com");
-        BaseComponent.submitForm().submitShouldBeFailed();
+        MainComponent.submitForm().submitShouldBeFailed();
         $(user.fieldEmail).shouldNotHave(CustomConditions.classError());
         $(user.fieldLogin).shouldHave(CustomConditions.classError().because("Login \"" + defaultEmail + "\" is already registered"));
         return this;

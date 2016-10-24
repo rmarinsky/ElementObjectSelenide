@@ -2,7 +2,7 @@ package gsmserver;
 
 import com.codeborne.selenide.Condition;
 import gsmserver.Components.Account.AccountPersonalData;
-import gsmserver.Components.BaseComponent;
+import gsmserver.Components.MainComponent;
 import gsmserver.Components.User;
 import gsmserver.Utils.BaseTest;
 import gsmserver.Utils.Random;
@@ -31,7 +31,7 @@ public class PersonalDataTests extends BaseTest{
         user.fillLastName(tempTestVal);
         $(user.customBirthday).is(Condition.readonly);
         user.fillCity(tempTestVal);
-        BaseComponent.submitForm().submitShouldBeSucceeded();
+        MainComponent.submitForm().submitShouldBeSucceeded();
         refresh();
         $(user.fieldFirstName).shouldHave(Condition.value(tempTestVal));
         $(user.fieldLastName).shouldHave(Condition.value(tempTestVal));
@@ -49,11 +49,11 @@ public class PersonalDataTests extends BaseTest{
         User user = new User();
         user.chooseCountry("Turkey");
         user.shouldHaveText(user.customCountry,"Turkey");
-        BaseComponent.submitForm().submitShouldBeSucceeded();
+        MainComponent.submitForm().submitShouldBeSucceeded();
         $(user.customRegion).shouldNotBe(Condition.exist);
         user.chooseCountry("Spain").chooseRegion("Aragon");
         user.shouldHaveText(user.customRegion,"Aragon");
-        BaseComponent.submitForm().submitShouldBeSucceeded();
+        MainComponent.submitForm().submitShouldBeSucceeded();
         refresh();
         user.shouldHaveText(user.customCountry,"Spain");
         user.shouldHaveText(user.customRegion, "Aragon");

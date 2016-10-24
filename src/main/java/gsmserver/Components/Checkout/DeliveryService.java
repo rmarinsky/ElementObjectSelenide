@@ -11,6 +11,7 @@ public class DeliveryService{
 
     @Step("Choose delivery service: [{0}] and check cost")
     public DeliveryService chooseDeliveryServiceAndCheckCost(final String value){
+        $("[data-sm-role='checkout.delivery-select']").shouldBe(Condition.visible);
         SelenideElement lineDeliveryCompany = $$("[data-sm-role='checkout.delivery-select']").findBy(Condition.text(value));
         String cost = lineDeliveryCompany.$("td>strong").getText();
         lineDeliveryCompany.click();
