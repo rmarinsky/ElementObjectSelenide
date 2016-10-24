@@ -4,9 +4,10 @@ import com.codeborne.selenide.Condition;
 import gsmserver.Components.Account.AccountPersonalData;
 import gsmserver.Components.MainComponent;
 import gsmserver.Components.User;
+import gsmserver.Pages.HomePage;
 import gsmserver.Utils.BaseTest;
 import gsmserver.Utils.Random;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -16,8 +17,9 @@ import static gsmserver.Utils.DefaultData.defaultPassword;
 
 public class PersonalDataTests extends BaseTest{
 
-    @Before
-    public void beforeC() {
+    @BeforeClass
+    public static void beforeClass() {
+        HomePage.openHomePage();
         new User().loginUserViaJS(defaultEmail, defaultPassword);
         AccountPersonalData.openPersonalDataPage();
     }

@@ -6,9 +6,11 @@ import gsmserver.Components.Product;
 import gsmserver.Components.ProductList;
 import gsmserver.Components.RightFixedButtons;
 import gsmserver.Components.User;
+import gsmserver.Pages.HomePage;
 import gsmserver.Utils.BaseTest;
 import gsmserver.Utils.DefaultData;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -16,10 +18,15 @@ import static com.codeborne.selenide.Selenide.refresh;
 
 public class ProductListTests extends BaseTest {
 
+    @BeforeClass
+    public static void beforeClass(){
+        HomePage.openHomePage();
+    }
+
     @Before
     public void beforeBase(){
-        ProductList.openProductListPage();
         clearCookies();
+        ProductList.openProductListPage();
     }
 
     @Test

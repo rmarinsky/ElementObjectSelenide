@@ -16,7 +16,7 @@ public class ProductPageTests extends BaseTest{
     }
 
     @Test
-    public void test(){
+    public void addProductToCartFromProductPage(){
         new Product().addToCart(testProductId).goToCart(testProductId).
                 cartShouldHaveProduct(testProductId);
     }

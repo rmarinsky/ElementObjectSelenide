@@ -13,6 +13,8 @@ public class PositiveTestsForUserPopup extends BaseTest {
     @Before
     public void beforeTest(){
         HomePage.openHomePage();
+        clearCookies();
+        HomePage.openHomePage();
     }
 
     @Test

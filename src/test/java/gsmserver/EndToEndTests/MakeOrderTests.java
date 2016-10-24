@@ -6,6 +6,7 @@ import gsmserver.Components.Checkout.DeliveryService;
 import gsmserver.Components.Checkout.PaymentService;
 import gsmserver.Components.Product;
 import gsmserver.Components.User;
+import gsmserver.Pages.HomePage;
 import gsmserver.Utils.BaseTest;
 import org.junit.After;
 import org.junit.Before;
@@ -22,6 +23,7 @@ import static gsmserver.Utils.Random.generateRandomString;
 public class MakeOrderTests extends BaseTest{
 
     @Before public void beforeBase(){
+        HomePage.openHomePage();
         clearCookies();
         new Product().addProductToCartViaJS(defaultAvrgCostProduct, 1);
         ContactInformation.openCheckoutPage();

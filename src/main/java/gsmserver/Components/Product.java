@@ -60,9 +60,12 @@ public class Product {
         }
     }
 
+    @Step("Remove product form user's wish list via JS")
     public void removeProductFromWishListViaJS(Integer productId){
         new JSExecutor().GETRequest("/account/wishlist/remove/?productId="+String.valueOf(productId));
     }
+
+    @Step("Remove product form Cart via JS")
     public void removeProductFromCartViaJS(Integer productId){
         new JSExecutor().GETRequest("/ajax/cart/remove/"+String.valueOf(productId)+"?ajax=on&pageType=cart");
     }

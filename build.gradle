@@ -52,7 +52,7 @@ tasks.withType(Test) {
                 'chrome.switches': '--disable-extensions',
                 'selenide.start.maximized':'true',
                 'selenide.savePageSource':'false',
-                'selenide.timeout':'7000',
+                'selenide.timeout':'6000',
                 'selenide.fileDownload':'HTTPGET',
                 'selenide.fastSetValue':'true',
                 'selenide.screenshots':'false',

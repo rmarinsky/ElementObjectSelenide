@@ -2,8 +2,11 @@ package gsmserver.CheckoutTests;
 
 import gsmserver.Components.Checkout.ContactInformation;
 import gsmserver.Components.Product;
+import gsmserver.Pages.HomePage;
 import gsmserver.Utils.BaseTest;
-import org.junit.*;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import static gsmserver.Utils.DefaultData.defaultAvrgCostProduct;
 
@@ -11,18 +14,15 @@ public class CheckoutContactInformationTests extends BaseTest{
 
     @BeforeClass
     public static void beforeClass(){
+        HomePage.openHomePage();
         clearCookies();
         new Product().addProductToCartViaJS(defaultAvrgCostProduct, 1);
+        ContactInformation.openCheckoutPage();
     }
 
     @AfterClass
     public static void afterClass(){
         new Product().removeProductFromCartViaJS(defaultAvrgCostProduct);
-    }
-
-    @Before
-    public void beforeBase(){
-        ContactInformation.openCheckoutPage();
     }
 
     @Test

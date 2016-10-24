@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import gsmserver.Pages.HomePage;
 import gsmserver.Utils.BaseTest;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
@@ -13,6 +14,11 @@ import static gsmserver.Components.Product.buttonAddToCart;
 import static org.junit.Assert.fail;
 
 public class HomePageTests extends BaseTest{
+
+    @Before
+    public void beforeTest(){
+        HomePage.openHomePage();
+    }
 
     @Test
     public void bannersShouldBeVisibleTests(){

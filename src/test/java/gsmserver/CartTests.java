@@ -1,5 +1,6 @@
 package gsmserver;
 
+import com.codeborne.selenide.Condition;
 import gsmserver.Components.Cart;
 import gsmserver.Components.Product;
 import gsmserver.Utils.BaseTest;
@@ -9,6 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import ru.yandex.qatools.allure.annotations.Title;
 
+import static com.codeborne.selenide.Selenide.$;
 import static gsmserver.Utils.DefaultData.defaultAvrgCostProduct;
 import static gsmserver.Utils.DefaultData.lowCostProduct;
 
@@ -49,6 +51,7 @@ public class CartTests extends BaseTest{
         new Product().addProductToCartViaJS(lowCostProduct, 1);
         Cart.openCartPage().cartShouldHaveProduct(lowCostProduct).
                 shouldBeVisibleMassageLowCost();
+        $("#goto-checkout").shouldHave(Condition.cssClass("inactive-button"));
     }
 
 }

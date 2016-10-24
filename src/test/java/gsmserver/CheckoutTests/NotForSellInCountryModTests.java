@@ -1,31 +1,36 @@
 package gsmserver.CheckoutTests;
 
-import gsmserver.Components.MainComponent;
 import gsmserver.Components.Checkout.ContactInformation;
+import gsmserver.Components.MainComponent;
 import gsmserver.Components.Product;
 import gsmserver.Components.Search;
 import gsmserver.Components.User;
+import gsmserver.Pages.HomePage;
 import gsmserver.Utils.BaseTest;
 import gsmserver.Utils.Random;
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static gsmserver.Utils.DefaultData.defaultEmail;
-import static gsmserver.Utils.DefaultData.defaultPassword;
-import static gsmserver.Utils.DefaultData.octopusProduct;
+import static gsmserver.Utils.DefaultData.*;
 
-public class NotForSellInCountryMod extends BaseTest{
+public class NotForSellInCountryModTests extends BaseTest{
+
+    @BeforeClass
+    public static void beforeClass(){
+        HomePage.openHomePage();
+        clearCookies();
+    }
 
     @Before
-    public void beforeBase(){
-        clearCookies();
+    public void before(){
         new Product().addProductToCartViaJS(octopusProduct, 1);
         ContactInformation.openCheckoutPage();
     }
 
-    @After
-    public void afterClass(){
+    @AfterClass
+    public static void afterClass(){
         new Product().removeProductFromCartViaJS(octopusProduct);
     }
 
