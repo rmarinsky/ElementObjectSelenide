@@ -25,13 +25,13 @@ public class NotForSellInCountryModTests extends BaseTest{
 
     @Before
     public void before(){
-        new Product().addProductToCartViaJS(octopusProduct, 1);
+        Product.addProductToCartViaJS(octopusProduct, 1);
         ContactInformation.openCheckoutPage();
     }
 
     @AfterClass
     public static void afterClass(){
-        new Product().removeProductFromCartViaJS(octopusProduct);
+        Product.removeProductFromCartViaJS(octopusProduct);
     }
 
     @Test
@@ -50,7 +50,7 @@ public class NotForSellInCountryModTests extends BaseTest{
     @Test
     public void notForUsaModificationWithAuth(){
         String testTempString = Random.generateRandomString();
-        new User().loginUserViaJS(defaultEmail, defaultPassword);
+        User.loginUserViaJS(defaultEmail, defaultPassword);
         new ContactInformation().openEditAddressForm().fillFirstName(testTempString).fillLastName(testTempString).
                 chooseCountry("United States").chooseRegion("Colorado").
                 fillPhoneByCountry("United States", "112223333").fillCity("testTempString").
@@ -63,9 +63,10 @@ public class NotForSellInCountryModTests extends BaseTest{
     @Test
     public void testForSearchForbiddenProducts(){
         new Search().searchFor(String.valueOf(octopusProduct)).searchResultShouldHasSearchedPhrase(String.valueOf(octopusProduct)).shouldHaveProduct(octopusProduct);
-        new User().loginUserViaJS(defaultEmail, defaultPassword).setCountryUSAForUserViaJS();
+        User.loginUserViaJS(defaultEmail, defaultPassword);
+        User.setCountryUSAForUserViaJS();
         new Search().searchFor(String.valueOf(octopusProduct)).searchResultShouldHasSearchedPhrase(String.valueOf(octopusProduct)).shouldHaveNoProduct(octopusProduct);
-        new User().setCountrySpainForUserViaJS();
+        User.setCountrySpainForUserViaJS();
     }
 
 }

@@ -49,19 +49,19 @@ public class ProductListTests extends BaseTest {
         $("#user_product_table_full").shouldBe(Condition.visible);
         $("#user_product_table_full").$("[data-product-id='"+productId+"']").shouldBe(Condition.visible);
         ProductList.openProductListPage().wishListStarCheckForProduct(productId);
-        new Product().removeProductFromWishListViaJS(productId);
+        Product.removeProductFromWishListViaJS(productId);
     }
 
     @Test
     public void addingToWithListProductViaUser(){
-        new User().loginUserViaJS(DefaultData.defaultEmail, DefaultData.defaultPassword);
+        User.loginUserViaJS(DefaultData.defaultEmail, DefaultData.defaultPassword);
         refresh();
         Integer productId = new ProductList().addToWishListProduct();
         new ProductList().wishListStarCheckForProduct(productId).
                 openWishListPageViaProduct(productId);
         $("#user_product_table_full").shouldBe(Condition.visible);
         $("#user_product_table_full").$("[data-product-id='"+productId+"']").shouldBe(Condition.visible);
-        new Product().removeProductFromWishListViaJS(productId);
+        Product.removeProductFromWishListViaJS(productId);
     }
 
 }

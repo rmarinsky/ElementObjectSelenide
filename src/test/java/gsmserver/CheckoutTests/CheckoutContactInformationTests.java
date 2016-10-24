@@ -8,7 +8,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static gsmserver.Utils.DefaultData.defaultAvrgCostProduct;
+import static gsmserver.Utils.DefaultData.avrgCostProduct;
 
 public class CheckoutContactInformationTests extends BaseTest{
 
@@ -16,13 +16,13 @@ public class CheckoutContactInformationTests extends BaseTest{
     public static void beforeClass(){
         HomePage.openHomePage();
         clearCookies();
-        new Product().addProductToCartViaJS(defaultAvrgCostProduct, 1);
+        Product.addProductToCartViaJS(avrgCostProduct, 1);
         ContactInformation.openCheckoutPage();
     }
 
     @AfterClass
     public static void afterClass(){
-        new Product().removeProductFromCartViaJS(defaultAvrgCostProduct);
+        Product.removeProductFromCartViaJS(avrgCostProduct);
     }
 
     @Test

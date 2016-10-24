@@ -20,7 +20,7 @@ public class PersonalDataTests extends BaseTest{
     @BeforeClass
     public static void beforeClass() {
         HomePage.openHomePage();
-        new User().loginUserViaJS(defaultEmail, defaultPassword);
+        User.loginUserViaJS(defaultEmail, defaultPassword);
         AccountPersonalData.openPersonalDataPage();
     }
 

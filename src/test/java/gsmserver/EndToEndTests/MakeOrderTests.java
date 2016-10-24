@@ -15,7 +15,7 @@ import ru.yandex.qatools.allure.annotations.Description;
 import ru.yandex.qatools.allure.annotations.Title;
 
 import static com.codeborne.selenide.Selenide.$;
-import static gsmserver.Utils.DefaultData.defaultAvrgCostProduct;
+import static gsmserver.Utils.DefaultData.avrgCostProduct;
 import static gsmserver.Utils.Random.generateRandomEmail;
 import static gsmserver.Utils.Random.generateRandomString;
 
@@ -25,12 +25,12 @@ public class MakeOrderTests extends BaseTest{
     @Before public void beforeBase(){
         HomePage.openHomePage();
         clearCookies();
-        new Product().addProductToCartViaJS(defaultAvrgCostProduct, 1);
+        Product.addProductToCartViaJS(avrgCostProduct, 1);
         ContactInformation.openCheckoutPage();
     }
 
     @After public void afterTest(){
-        new Product().removeProductFromCartViaJS(defaultAvrgCostProduct);
+        Product.removeProductFromCartViaJS(avrgCostProduct);
     }
 
     @Title("Make simple order")

@@ -155,20 +155,20 @@ public class User {
     }
 
     @Step
-    public User loginUserViaJS(final String login, final String password){
+    public static User loginUserViaJS(final String login, final String password){
         new JSExecutor().POSTWithParams("/user/login/", String.format("{'login[username]':'%s', 'login[password]':'%s'}", login, password));
-        return this;
+        return new User();
     }
 
     @Step
-    public void setCountryUSAForUserViaJS(){
+    public static void setCountryUSAForUserViaJS(){
         AccountPersonalData.openPersonalDataPage();
         String csrf = $("[name='YII_CSRF_TOKEN']").getValue();
         new JSExecutor().POSTWithParams("/account/data/", "{'account[countryId]':'840', 'account[stateId]':'-1', 'YII_CSRF_TOKEN':'"+csrf+"'}");
     }
 
     @Step
-    public void setCountrySpainForUserViaJS(){
+    public static void setCountrySpainForUserViaJS(){
         AccountPersonalData.openPersonalDataPage();
         String csrf = $("[name='YII_CSRF_TOKEN']").getValue();
         new JSExecutor().POSTWithParams("/account/data/", "{'account[countryId]':'724', 'account[stateId]':'-1', 'YII_CSRF_TOKEN':'"+csrf+"'}");
