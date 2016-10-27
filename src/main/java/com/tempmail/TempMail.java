@@ -32,6 +32,7 @@ public class TempMail {
 
     private static String tempPassword;
     public static String getTempPassword() {
+        System.out.println("tempapssword is "+ tempPassword);
         return tempPassword;
     }
     public static void setTempPassword(String tempPassword) {
