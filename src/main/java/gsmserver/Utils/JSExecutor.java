@@ -2,13 +2,20 @@ package gsmserver.Utils;
 
 import com.codeborne.selenide.Selenide;
 
+import java.util.Objects;
+
 import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.sleep;
+import static org.junit.Assert.fail;
 
 public class JSExecutor {
 
     public JSExecutor(){
-        Selenide.executeJavaScript("$(document).ready()");
+        if(!Objects.equals(baseUrl, "http://localhost:8080")) {
+            Selenide.executeJavaScript("$(document).ready()");
+        } else {
+            fail("Because base url is equals 'http://localhost:8080'");
+        }
     }
 
     public void POSTWithParams(final String requestUrl, final String param){
@@ -27,9 +34,7 @@ public class JSExecutor {
      * request with params
      */
     public void GETRequest(final String request){
-        System.out.println(String.format("$.get('%s%s')", baseUrl, request));
         Selenide.executeJavaScript(String.format("$.get('%s%s').done()", baseUrl, request));
-        sleep(300);
     }
 
 }

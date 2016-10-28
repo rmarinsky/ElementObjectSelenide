@@ -1,17 +1,10 @@
 
+
 package gsmserver.SomeTests;
-
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import static com.codeborne.selenide.Selenide.*;
 
 public class SomeTest {
 
-    @Ignore
+   /* @Ignore
     @Test
     public void test() {
         Configuration.holdBrowserOpen = true;
@@ -28,5 +21,25 @@ public class SomeTest {
             $(".show-more-wrapper a").shouldBe(Condition.visible).click();
             $$(".product-item").shouldHave(CollectionCondition.sizeGreaterThan(count));
         }
-    }
+    }*/
+
+    /*@Test
+    public void olo(){
+        Configuration.holdBrowserOpen = true;
+        Configuration.baseUrl = "http://rc.gsmserver.com";
+        open("");
+        try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
+            stream.forEach(System.out::println);
+        }
+        Product.addProductSToCartViaJs(ids);
+        }*/
+    /*@Test
+    public void ololo(){
+        MarionetteDriverManager.getInstance().setup();
+        WebDriverRunner.setWebDriver(new FirefoxDriver());
+        open("https://bo.ehopper.com/9/?id=0#login");
+        $(".form-signin").sendKeys("1");
+        $(".pin-display span.active").shouldBe(Condition.visible);
+    }*/
+
 }

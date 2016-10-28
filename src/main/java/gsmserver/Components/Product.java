@@ -8,6 +8,8 @@ import gsmserver.Utils.JSExecutor;
 import org.openqa.selenium.By;
 import ru.yandex.qatools.allure.annotations.Step;
 
+import java.util.List;
+
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -70,7 +72,7 @@ public class Product {
         new JSExecutor().GETRequest(String.format("/ajax/cart/add/%s,%s", productId, count));
     }
 
-    public static void addProductSToCartViaJs(final Integer... productId){
+    public static void addProductSToCartViaJs(final List<Integer> productId){
         for(Integer id : productId) {
             new JSExecutor().GETRequest(String.format("/ajax/cart/add/%s,1", id));
         }
