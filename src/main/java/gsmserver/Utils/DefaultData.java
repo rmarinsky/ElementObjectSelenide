@@ -2,7 +2,7 @@ package gsmserver.Utils;
 
 public class DefaultData {
 
-    static final String defaultBaseUrl = "http://rc.gsmserver.com";
+    static final String defaultBaseUrl = "http://gsmserver.com";
     public static final String defaultEmail = "email@test.com";
     public static final String defaultPassword = "111111";
     public static final Integer avrgCostProduct = 834632;
