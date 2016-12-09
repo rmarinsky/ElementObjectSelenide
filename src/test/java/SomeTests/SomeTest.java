@@ -1,6 +1,6 @@
 
 
-package gsmserver.SomeTests;
+package SomeTests;
 
 public class SomeTest {
 

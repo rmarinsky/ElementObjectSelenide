@@ -2,29 +2,32 @@ package gsmserver.Components.Checkout;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selectors;
+import com.codeborne.selenide.WebDriverRunner;
 import gsmserver.Components.User;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Selenide.*;
 import static gsmserver.Utils.CustomConditions.signaturesOfFieldsHaveRequiredLabel;
 
-public class ContactInformation {
+public class Checkout {
 
     private User user;
 
-    public ContactInformation(){
+    public Checkout(){
+        if($("[data-sm-role='checkout.container']").is(Condition.hidden) && WebDriverRunner.getWebDriver().getCurrentUrl().contains("/cart/"))
+            open("/checkout/");
         $("[data-sm-role='checkout.container']").shouldBe(Condition.visible);
         user = new User();
     }
 
     @Step
-    public static ContactInformation openCheckoutPage(){
+    public static Checkout openCheckoutPage(){
         open("/checkout/");
-        return new ContactInformation();
+        return new Checkout();
     }
 
     @Step("Check that countries: [{0}], have required filed tax id")
-    public ContactInformation verifyCountriesWithRequiredTaxId(String... countries) {
+    public Checkout verifyCountriesWithRequiredTaxId(String... countries) {
         for(String country : countries) {
             user.chooseCountry(country);
             signaturesOfFieldsHaveRequiredLabel(user.fieldTaxId);
@@ -33,7 +36,7 @@ public class ContactInformation {
     }
 
     @Step("Check that countries: [{0}], have required filed middle name")
-    public ContactInformation verifyCountriesWithRequiredMiddleName(String... countries){
+    public Checkout verifyCountriesWithRequiredMiddleName(String... countries){
         for(String country : countries) {
             user.chooseCountry(country);
             signaturesOfFieldsHaveRequiredLabel(user.fieldMiddleName);
@@ -42,7 +45,7 @@ public class ContactInformation {
     }
 
     @Step("Check that countries: [{0}], have required filed Region")
-    public ContactInformation verifyCountriesWithRequiredRegion(String... countries){
+    public Checkout verifyCountriesWithRequiredRegion(String... countries){
         for(String country : countries) {
             user.chooseCountry(country);
             signaturesOfFieldsHaveRequiredLabel(user.customRegion);
@@ -53,7 +56,7 @@ public class ContactInformation {
     }
 
     @Step("Products: [{0}], forbidden to sell")
-    public ContactInformation shouldBeVisibleNotificationForbiddenToSellProduct(Integer... idProduct){
+    public Checkout shouldBeVisibleNotificationForbiddenToSellProduct(Integer... idProduct){
         $("#products-forbidden-to-sell-in-user-country").shouldBe(Condition.visible, Condition.and ("Have notification", Condition.text("Not for the USA")));
         for(Integer product : idProduct){
             $$(".product-id").findBy(Condition.text(String.valueOf(product)));
@@ -62,7 +65,7 @@ public class ContactInformation {
     }
 
     @Step("Click on button 'Remove' and check that cart have no product:: [{0}]")
-    public ContactInformation removeAndCheckRemovingInCart(Integer idProduct){
+    public Checkout removeAndCheckRemovingInCart(Integer idProduct){
         $(".button-okay").click();
         $("#cart").shouldBe(Condition.exist);
         $(Selectors.withText(String.valueOf(idProduct))).shouldBe(Condition.hidden);

@@ -35,7 +35,7 @@ class HTMLTemplate {
             }
             html._table()._html();
             log.info(html.toHtml());
-            AllureReportUtil.attachLog(html.toHtml());
+            AllureUtils.attachLog(html.toHtml());
         } catch (IOException e) {
             e.printStackTrace();
         }

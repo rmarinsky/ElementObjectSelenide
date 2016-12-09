@@ -39,7 +39,7 @@ public class ProductList {
 
     @Step
     public static ProductList openProductListPage(){
-        open("/gsm/boxes-and-dongles/");
+        open("/gsm/boxes-and-dongles/dongle/");
         return new ProductList();
     }
 

@@ -1,7 +1,7 @@
 package gsmserver.EndToEndTests;
 
 import com.codeborne.selenide.SelenideElement;
-import gsmserver.Components.Checkout.ContactInformation;
+import gsmserver.Components.Checkout.Checkout;
 import gsmserver.Components.Checkout.DeliveryService;
 import gsmserver.Components.Checkout.PaymentService;
 import gsmserver.Components.Product;
@@ -26,7 +26,7 @@ public class MakeOrderTests extends BaseTest{
         HomePage.openHomePage();
         clearCookies();
         Product.addProductToCartViaJS(avrgCostProduct, 1);
-        ContactInformation.openCheckoutPage();
+        Checkout.openCheckoutPage();
     }
 
     @After public void afterTest(){

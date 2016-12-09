@@ -9,54 +9,43 @@ public class CustomWatcher extends TestWatcher {
 
     private final HTMLTemplate report = new HTMLTemplate();
 
-    private boolean onFailedTest = true;
-    private boolean onSucceededTest = true;
-    private boolean saveVideo = true;
+    private boolean onSucceededTest = false;
+    private boolean saveVideo = false;
 
-
-    public CustomWatcher onFailedTest(boolean onFailedTest) {
-        this.onFailedTest = onFailedTest;
+    public CustomWatcher saveVideo(){
+        this.saveVideo = true;
         return this;
     }
 
-    public CustomWatcher saveVideo(boolean saveVideo){
-        this.saveVideo = saveVideo;
-        return this;
-    }
-
-    public CustomWatcher onSucceededTest(boolean onSucceededTest) {
-        this.onSucceededTest = onSucceededTest;
+    public CustomWatcher logSucceededTest() {
+        this.onSucceededTest = true;
         return this;
     }
 
     @Override
     protected void starting(Description test) {
-        if (onFailedTest || onSucceededTest) {
-            Screenshots.startContext(test.getClassName(), test.getMethodName());
-            report.start();
-        }
+        Screenshots.startContext(test.getClassName(), test.getMethodName());
+        report.start();
     }
 
     @Override
     protected void succeeded(Description description) {
         if (onSucceededTest) {
-            report.finish();
-            AllureReportUtil.attachScreenshot();
+            AllureUtils.attachScreenshot();
             if(saveVideo) {
-                AllureReportUtil.attachVideo();
+                AllureUtils.attachVideo();
             }
+            report.finish();
         }
     }
 
     @Override
     protected void failed(Throwable e, Description description) {
-        if (onFailedTest) {
-            report.finish();
-            AllureReportUtil.attachScreenshot();
-            if(saveVideo) {
-                AllureReportUtil.attachVideo();
-            }
+        AllureUtils.attachScreenshot();
+        if(saveVideo) {
+            AllureUtils.attachVideo();
         }
+        report.finish();
     }
 
     @Override

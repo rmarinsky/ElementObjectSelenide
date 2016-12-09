@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Screenshots.takeScreenShotAsFile;
 import static com.google.common.io.Files.toByteArray;
 
 
-class AllureReportUtil {
+class AllureUtils {
 
     @Attachment(value = "Screenshot", type = "image/png")
     static byte[] attachScreenshot() {

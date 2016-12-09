@@ -27,7 +27,7 @@ public class User {
             fieldCity = byCssSelector("input#city"),
             fieldMiddleName = byCssSelector("input[name*='middleName']"),
             customCountry = byCssSelector("#country_id_chosen"),
-            customRegion = byCssSelector("#state_id_chosen"),
+            customRegion = byCssSelector(".chosen-container#state_id_chosen"),
             customCity = byCssSelector("#city_id_chosen"),
             fieldAddress = byCssSelector("input[name*='[address]']"), //because of element have name = "address[address]"
             customPhoneCountries = byCssSelector("a.styled-phone-dropdown-button"),

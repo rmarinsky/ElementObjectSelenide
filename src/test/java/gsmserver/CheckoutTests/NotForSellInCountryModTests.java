@@ -1,6 +1,6 @@
 package gsmserver.CheckoutTests;
 
-import gsmserver.Components.Checkout.ContactInformation;
+import gsmserver.Components.Checkout.Checkout;
 import gsmserver.Components.MainComponent;
 import gsmserver.Components.Product;
 import gsmserver.Components.Search;
@@ -26,7 +26,7 @@ public class NotForSellInCountryModTests extends BaseTest{
     @Before
     public void before(){
         Product.addProductToCartViaJS(octopusProduct, 1);
-        ContactInformation.openCheckoutPage();
+        Checkout.openCheckoutPage();
     }
 
     @AfterClass
@@ -37,13 +37,13 @@ public class NotForSellInCountryModTests extends BaseTest{
     @Test
     public void notForUsaModificationWOAuth(){
         String testTempString = Random.generateRandomString();
-        new ContactInformation().openEditAddressForm().
+        new Checkout().openEditAddressForm().
                 fillFirstName(testTempString).fillLastName(testTempString).
                 chooseCountry("United States").chooseRegion("Colorado").
                 fillPhoneByCountry("United States", "112223333").fillCity("testTempString").
         fillEmail(Random.generateRandomEmail()).fillAddress(testTempString);
         MainComponent.submitStepCheckout();
-        new ContactInformation().shouldBeVisibleNotificationForbiddenToSellProduct(octopusProduct).
+        new Checkout().shouldBeVisibleNotificationForbiddenToSellProduct(octopusProduct).
                 removeAndCheckRemovingInCart(octopusProduct);
     }
 
@@ -51,12 +51,12 @@ public class NotForSellInCountryModTests extends BaseTest{
     public void notForUsaModificationWithAuth(){
         String testTempString = Random.generateRandomString();
         User.loginUserViaJS(defaultEmail, defaultPassword);
-        new ContactInformation().openEditAddressForm().fillFirstName(testTempString).fillLastName(testTempString).
+        new Checkout().openEditAddressForm().fillFirstName(testTempString).fillLastName(testTempString).
                 chooseCountry("United States").chooseRegion("Colorado").
                 fillPhoneByCountry("United States", "112223333").fillCity("testTempString").
                 fillEmail(Random.generateRandomEmail()).fillAddress(testTempString);
         MainComponent.submitStepCheckout();
-        new ContactInformation().shouldBeVisibleNotificationForbiddenToSellProduct(octopusProduct).
+        new Checkout().shouldBeVisibleNotificationForbiddenToSellProduct(octopusProduct).
                 removeAndCheckRemovingInCart(octopusProduct);
     }
 

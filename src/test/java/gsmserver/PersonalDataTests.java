@@ -53,8 +53,8 @@ public class PersonalDataTests extends BaseTest{
         user.shouldHaveText(user.customCountry,"Turkey");
         MainComponent.submitForm().submitShouldBeSucceeded();
         $(user.customRegion).shouldNotBe(Condition.exist);
-        user.chooseCountry("Spain").chooseRegion("Aragon");
-        user.shouldHaveText(user.customRegion,"Aragon");
+        user.chooseCountry("Spain").shouldHaveText(user.customCountry,"Spain");
+        user.chooseRegion("Aragon").shouldHaveText(user.customRegion,"Aragon");
         MainComponent.submitForm().submitShouldBeSucceeded();
         refresh();
         user.shouldHaveText(user.customCountry,"Spain");
